@@ -12,9 +12,10 @@ exclude =
     __pycache__,# Ignore Python cache
     migrations, # Ignore Django migrations
     env,        # Ignore virtual environment
+    .env,        # Ignore virtual environment
     venv,       # Ignore virtual environment
     .venv       # ignore virtual environment
-    .github,    # Ignore github directory
+    */.github,    # Ignore github directory
     */settings.py # Ignore Django settings
     */__init__.py # Ignore __init__ file
     */constants.py # Ignore constant file
