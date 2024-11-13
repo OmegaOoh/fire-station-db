@@ -23,7 +23,7 @@ class Shift(models.Model):
 class Staff(models.Model):
     """Fire Station Staff."""
     full_name = models.CharField(max_length=100)
-    age = models.SmallIntegerField()
+    dob = models.DateField()
     chromosome = models.CharField(max_length=10)
     position = models.CharField(max_length=100)
     station = models.ForeignKey(Station, on_delete=models.CASCADE)
