@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from choice_enum import DayOfWeek, FireFighterRank, FireFighterRole, IncidentType
+from choice_enum import DayOfWeek, FireFighterRank, FireFighterRole, IncidentType, Gender
 
 
 class Station(models.Models):
@@ -24,7 +24,7 @@ class Staff(models.Model):
     """Fire Station Staff."""
     full_name = models.CharField(max_length=100)
     dob = models.DateField()
-    chromosome = models.CharField(max_length=10)
+    gender = models.CharField(choice=Gender)
     position = models.CharField(max_length=100)
     station = models.ForeignKey(Station, on_delete=models.CASCADE)
     shift = models.ManyToManyField(Shift, on_delete=models.CASCADE)

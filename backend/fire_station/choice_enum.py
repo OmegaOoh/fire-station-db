@@ -12,6 +12,12 @@ class DayOfWeek(enum.Enum):
     SUNDAY = 7
 
 
+class Gender(enum.Enum):
+    Male = 'Male'
+    Female = 'Female'
+    Other = 'Other'
+
+
 class FireFighterRank(enum.Enum):
     """Ranks of Firefighter (ascending order)."""
     FIRE_FIGHTER = 'FireFighter'
