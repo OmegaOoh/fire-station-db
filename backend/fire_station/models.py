@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from .choice_enum import DayOfWeek, FireFighterRank, FireFighterRole, IncidentType, Gender
+from django_enum import EnumField
 
 
 class Station(models.Model):
@@ -14,7 +15,7 @@ class Shift(models.Model):
     """Working Shift indicates, Start time, End time and day of weeks."""
     shift_start = models.TimeField()
     shift_end = models.TimeField()
-    day = models.SmallIntegerField(choices=DayOfWeek)
+    day = EnumField(DayOfWeek)
 
     def __str__(self):
         return f"{self.day}, {self.shift_start} - {self.shift_end}"
@@ -24,7 +25,7 @@ class Staff(models.Model):
     """Fire Station Staff."""
     full_name = models.CharField(max_length=100)
     dob = models.DateField()
-    gender = models.CharField(choices=Gender, max_length=6)
+    gender = EnumField(Gender)
     position = models.CharField(max_length=100)
     station = models.ForeignKey(Station, on_delete=models.CASCADE)
     shift = models.ManyToManyField(Shift)
@@ -36,8 +37,8 @@ class Staff(models.Model):
 class FireFighter(models.Model):
     """Firefighter is also Staff"""
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
-    rank = models.CharField(choices=FireFighterRank)
-    role = models.CharField(choices=FireFighterRole)
+    rank = EnumField(FireFighterRank)
+    role = EnumField(FireFighterRole)
 
     def __str__(self):
         return f"{self.rank}.{self.staff}, {self.role}"
@@ -66,7 +67,7 @@ class FireEngine(models.Model):
 
 class Dispatch(models.Model):
     """Common Info of dispatch"""
-    incident = models.IntegerField(choices=IncidentType)
+    incident = EnumField(IncidentType)
     reported_time = models.DateTimeField(default=timezone.now)
     notified_time = models.DateTimeField(default=timezone.now)
     address = models.CharField(max_length=250)

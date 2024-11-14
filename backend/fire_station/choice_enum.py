@@ -1,55 +1,55 @@
-import enum
+from django.db import models
 
 
-class DayOfWeek(enum.Enum):
+class DayOfWeek(models.IntegerChoices):
     """ENUM represent day of weeks"""
-    MONDAY = 1
-    TUESDAY = 2
-    WEDNESDAY = 3
-    THURSDAY = 4
-    FRIDAY = 5
-    SATURDAY = 6
-    SUNDAY = 7
+    MONDAY = 1, "Monday"
+    TUESDAY = 2, "Tuesday"
+    WEDNESDAY = 3, "Wednesday"
+    THURSDAY = 4, "Thursday"
+    FRIDAY = 5, "Friday"
+    SATURDAY = 6, "Saturday"
+    SUNDAY = 7, "Sunday "
 
 
-class Gender(enum.Enum):
-    Male = 'Male'
-    Female = 'Female'
-    Other = 'Other'
+class Gender(models.TextChoices):
+    Male = "Male", "Male"
+    Female = "Female", "Female"
+    Other = "Other"
 
 
-class FireFighterRank(enum.Enum):
+class FireFighterRank(models.IntegerChoices):
     """Ranks of Firefighter (ascending order)."""
-    FIRE_FIGHTER = 'FireFighter'
-    ENGINEER = "Engineer"
-    LIEUTENANT = "Lieutenant"
-    CAPTAIN = "Captain"
-    DISTRICT_CHIEF = "District Chief"
-    DIVISION_CHIEF = "Division Chief"
-    DEPUTY_FIRE_CHIEF = "Deputy Fire Chief"
-    FIRE_CHIEF = "Fire Chief"
+    FIRE_FIGHTER = 1, "FireFighter"
+    ENGINEER = 2, "Engineer"
+    LIEUTENANT = 3, "Lieutenant"
+    CAPTAIN = 4, "Captain"
+    DISTRICT_CHIEF = 5, "District Chief"
+    DIVISION_CHIEF = 6, "Division Chief"
+    DEPUTY_FIRE_CHIEF = 7, "Deputy Fire Chief"
+    FIRE_CHIEF = 8, "Fire Chief"
 
 
-class FireFighterRole(enum.Enum):
+class FireFighterRole(models.TextChoices):
     """Fire Fighter Field Role"""
-    Commander = "Incident Commander"
-    COMPANY_OFFICER = "Company Officer"
-    HOSELINE_OPERATOR = "Hoseline Operator"
-    NOZZLE_OPERATOR = "Nozzle Operator"
-    VENT_TECHNICIAN = "Vent Technician"
-    SEARCH_AND_RESCUE = "Search and Rescue Technician"
-    MEDICAL = "Medical Technician"
+    Commander = "Incident Commander", "Incident Commander"
+    COMPANY_OFFICER = "Company Officer", "Company Officer"
+    HOSELINE_OPERATOR = "Hoseline Operator", "Hoseline Operator"
+    NOZZLE_OPERATOR = "Nozzle Operator", "Nozzle Operator"
+    VENT_TECHNICIAN = "Vent Technician", "Vent Technician"
+    SEARCH_AND_RESCUE = "Search and Rescue", "Search and Rescue Technician"
+    MEDICAL = "Medic", "Medical Technician"
 
 
-class IncidentType(enum.Enum):
+class IncidentType(models.IntegerChoices):
     """Type of Incident."""
-    STRUCTURE_FIRE = 1
-    WILDLAND_FIRE = 2
-    VEHICLE_FIRE = 3
-    HAZMAT_FIRE = 4
-    MEDICAL_EMERGENCY = 5
-    VEHICLE_ACCIDENT = 6
-    WATER_RESCUE = 7
-    HAZMAT_INCIDENT = 8
-    NATURAL_DISASTER = 9
-    TECHNICAL_RESCUE = 10
+    STRUCTURE_FIRE = 1, "Structure Fire"
+    WILD_FIRE = 2, "Wild Fire"
+    VEHICLE_FIRE = 3, "Vehicle Fire"
+    HAZMAT_FIRE = 4, "Hazmat Fire"
+    MEDICAL_EMERGENCY = 5, "Medical Emergency"
+    VEHICLE_ACCIDENT = 6, "Vehicle Accident"
+    WATER_RESCUE = 7, "Water Rescue"
+    HAZMAT_INCIDENT = 8, "Hazmat Accident"
+    NATURAL_DISASTER = 9, "Natural Disaster"
+    TECHNICAL_RESCUE = 10, "Technical Rescue"
