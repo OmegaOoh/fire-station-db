@@ -87,7 +87,7 @@
                     </option>
                 </select>
             </label>
-            <button class="btn btn-primary w-full">Submit</button>
+            <button class="btn btn-primary w-full col-span-2 pb-0.5 text-xl ">Submit</button>
         </form>
         
     </div>
