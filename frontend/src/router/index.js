@@ -9,6 +9,7 @@ import StationCreate from '@/views/StationCreate.vue'
 import StaffList from '@/views/StaffList.vue'
 import StationDetail from '@/views/StationDetail.vue'
 import ItemCreate from '@/views/ItemCreate.vue'
+import StaffEdit from '@/views/StaffEdit.vue'
 
 const routes = [
     {
@@ -55,6 +56,11 @@ const routes = [
         path:'/staff',
         name: 'staffIndex',
         component: StaffList,
+    },
+    {
+        path: '/staff/:id/edit',
+        name: 'staffEdit',
+        component: StaffEdit,
     },
     {
         path:'/staff/add',

@@ -41,6 +41,11 @@
                             {{ shift.day }} {{ shift.shift_start }} - {{ shift.shift_end }}
                         </li>
                     </ul>
+                    <div></div>
+                    <div class="flex justify-end w-full">
+                        <router-link class="btn btn-accent w-fit" :to="`/staff/${staff.id}/edit/`">Edit</router-link>
+                    </div>
+                    
                 </div>
             </div>
         </template>
