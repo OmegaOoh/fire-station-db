@@ -67,23 +67,16 @@ class FireEngine(models.Model):
 
 
 class Dispatch(models.Model):
-    """Common Info of dispatch"""
+    """Info of dispatch"""
     incident = EnumField(IncidentType)
     reported_time = models.DateTimeField(default=timezone.now)
     notified_time = models.DateTimeField(default=timezone.now)
     address = models.CharField(max_length=250)
-
-    def __str__(self):
-        return f"{self.incident} at {self.address}, {self.reported_time}"
-
-
-class DispatchAssignment:
-    """Fire Station records of resource used for the response"""
-    dispatch = models.ForeignKey(Dispatch, on_delete=models.CASCADE)
+    station = models.ForeignKey(Station, on_delete=models.CASCADE)
     fire_engine = models.ManyToManyField(FireEngine)
     equipment_used = models.ManyToManyField(Equipment)
     fire_fighter = models.ManyToManyField(FireFighter)
-    time_back_at_station = models.DateTimeField(default=timezone.now())
+    resolved_time = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.dispatch}, done at {self.time_back_at_station}"
+        return f"{self.incident} at {self.address}, {self.reported_time}"
