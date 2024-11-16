@@ -3,8 +3,25 @@
         <h2 class="font-bold text-4xl mb-4">
             Staff
         </h2>
+
+        <label class="mb-4">
+            <div class="label-text-alt">
+                <span class="label-text-alt">
+                    <label>
+                        <span class="label-text ">Only Fire Fighter? </span>
+                        <input v-model="filterFighter" type="checkbox" :checked="filterFighter" class="checkbox checkbox-sm">
+                    </label>
+                </span>
+            </div>
+            <input 
+                type="text" 
+                v-model="search" 
+                placeholder="Search Staff..." 
+                class="input input-bordered w-full mb-2" 
+            />
+        </label>
         
-        <template v-for="staffData in staff" :key="staffData.id">
+        <template v-for="staffData in filteredStaff" :key="staffData.id">
             <div class="collapse collapse-arrow bg-base-300 mb-4">
                 <input type="radio" name="my-accordion-2" checked="checked" />
                 <div class="collapse-title text-xl font-medium">{{ staffData.name }}
@@ -35,10 +52,12 @@
 
 <script setup>
 import apiClient from '@/api.js'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 console.log(apiClient)
 
 const staff = ref([])
+const search = ref('')
+const filterFighter = ref(false)
 
 const fetchStaffs = async() => {
     /*
@@ -140,6 +159,25 @@ const fetchStaffs = async() => {
         }
     ];
 }
+
+const filteredStaff = computed(() => {
+    return staff.value.filter(staff => {
+            let matched = staff.name.toLowerCase().includes(search.value.toLowerCase()) ||
+                staff.position.toLowerCase().includes(search.value.toLowerCase()) ||
+                staff.station.toLowerCase().includes(search.value.toLowerCase())
+            if (staff.fire_fighter_rank && staff.fire_fighter_role) {
+                matched = matched ||
+                        staff.fire_fighter_rank.toLowerCase().includes(search.value.toLowerCase()) ||
+                        staff.fire_fighter_role.toLowerCase().includes(search.value.toLowerCase())
+            } else {
+                if (filterFighter.value) {
+                    matched = false;
+                }
+            }
+
+        return matched
+    });
+});
 
 onMounted(() => {
     fetchStaffs();
