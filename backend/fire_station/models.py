@@ -48,7 +48,6 @@ class FireFighter(models.Model):
 class Equipment(models.Model):
     """Equipment/ Tools"""
     item_name = models.CharField(max_length=100)
-    quantity = models.IntegerField(default=1)
     date = models.DateField()
 
     def __str__(self):
