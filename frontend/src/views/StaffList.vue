@@ -4,19 +4,25 @@
             Staff
         </h2>
         
-        <template v-for="(staffData, index) in staff" :key="index">
+        <template v-for="staffData in staff" :key="staffData.id">
             <div class="collapse collapse-arrow bg-base-300 mb-4">
                 <input type="radio" name="my-accordion-2" checked="checked" />
-                <div class="collapse-title text-xl font-medium">{{index + 1}}. {{ staffData.name }}, {{ staffData.station }}
+                <div class="collapse-title text-xl font-medium">{{ staffData.name }}
                     <div class="badge badge-secondary" v-if="staffData.fire_fighter_rank">Fire Fighter</div>
                 </div>
                     <div class="collapse-content grid grid-cols-1 md:grid-cols-2">
                         <p><strong>Date of Birth:</strong> {{ staffData.dob }}</p>
                         <p><strong>Gender:</strong> {{ staffData.gender }}</p>
                         <p><strong>Position:</strong> {{ staffData.position }}</p>
-                        <p><strong>Shift:</strong> {{ staffData.shift }}</p>
                         <p v-if="staffData.fire_fighter_rank"><strong>Fire Fighter Rank:</strong> {{ staffData.fire_fighter_rank }}</p>
                         <p v-if="staffData.fire_fighter_role"><strong>Fire Fighter Role:</strong> {{ staffData.fire_fighter_role }}</p>
+                        <ul class="col-span-2 grid grid-cols-1 md:grid-cols-6"><strong class="col-span-6">
+                            Shifts:
+                        </strong>
+                            <li v-for="(shift, index) in staffData.shift" :key="index">
+                                {{ shift.day }} {{ shift.shift_start }} - {{ shift.shift_end }}
+                            </li>
+                        </ul>
                     </div>
             </div>
         </template>
@@ -39,15 +45,18 @@ const fetchStaffs = async() => {
         const response = await apiClient.get(`/staff/`)
         staff.value = response.data
     */
-   //Placeholder Data
+    //Placeholder Data
     staff.value = [
         {
             name: "John Doe",
             dob: "1985-04-12",
             gender: "Male",
             position: "Firefighter",
-            station: "Station A",
-            shift: "Mon 09:00 - 16:00",
+            station: "Main Fire Station",
+            shift: [
+                { day: "Monday", shift_start: "09:00", shift_end: "17:00" },
+                { day: "Wednesday", shift_start: "09:00", shift_end: "17:00" }
+            ],
             fire_fighter_rank: "Firefighter",
             fire_fighter_role: "Incident Commander"
         },
@@ -56,8 +65,11 @@ const fetchStaffs = async() => {
             dob: "1990-06-25",
             gender: "Female",
             position: "Paramedic",
-            station: "Station B",
-            shift: "Tue 09:00 - 16:00",
+            station: "Downtown Fire Station",
+            shift: [
+                { day: "Tuesday", shift_start: "09:00", shift_end: "17:00" },
+                { day: "Thursday", shift_start: "09:00", shift_end: "17:00" }
+            ],
             fire_fighter_rank: null,
             fire_fighter_role: null
         },
@@ -66,8 +78,11 @@ const fetchStaffs = async() => {
             dob: "1988-01-30",
             gender: "Female",
             position: "Engineer",
-            station: "Station C",
-            shift: "Wed 09:00 - 16:00",
+            station: "Northside Fire Station",
+            shift: [
+                { day: "Wednesday", shift_start: "09:00", shift_end: "17:00" },
+                { day: "Friday", shift_start: "09:00", shift_end: "17:00" }
+            ],
             fire_fighter_rank: "Engineer",
             fire_fighter_role: "Medical Technician"
         },
@@ -76,8 +91,11 @@ const fetchStaffs = async() => {
             dob: "1975-11-05",
             gender: "Male",
             position: "Lieutenant",
-            station: "Station A",
-            shift: "Thu 09:00 - 16:00",
+            station: "Main Fire Station",
+            shift: [
+                { day: "Thursday", shift_start: "09:00", shift_end: "17:00" },
+                { day: "Saturday", shift_start: "09:00", shift_end: "17:00" }
+            ],
             fire_fighter_rank: "Lieutenant",
             fire_fighter_role: "Company Officer"
         },
@@ -86,10 +104,39 @@ const fetchStaffs = async() => {
             dob: "1995-09-15",
             gender: "Male",
             position: "Firefighter",
-            station: "Station B",
-            shift: "Sat 09:00 - 16:00",
+            station: "Downtown Fire Station",
+            shift: [
+                { day: "Saturday", shift_start: "09:00", shift_end: "17:00" },
+                { day: "Sunday", shift_start: "09:00", shift_end: "17:00" }
+            ],
             fire_fighter_rank: "Firefighter",
             fire_fighter_role: "Search and Rescue Technician"
+        },
+        {
+            name: "Diana Prince",
+            dob: "1983-04-20",
+            gender: "Female",
+            position: "Captain",
+            station: "Northside Fire Station",
+            shift: [
+                { day: "Monday", shift_start: "08:00", shift_end: "16:00" },
+                { day: "Tuesday", shift_start: "08:00", shift_end: "16:00" }
+            ],
+            fire_fighter_rank: "Captain",
+            fire_fighter_role: "Operations Officer"
+        },
+        {
+            name: "Ethan Hunt",
+            dob: "1980-12-12",
+            gender: "Male",
+            position: "Firefighter",
+            station: "Main Fire Station",
+            shift: [
+                { day: "Friday", shift_start: "09:00", shift_end: "17:00" },
+                { day: "Saturday", shift_start: "09:00", shift_end: "17:00" }
+            ],
+            fire_fighter_rank: "Firefighter",
+            fire_fighter_role: "Hazmat Technician"
         }
     ];
 }
