@@ -8,7 +8,7 @@
         </div>
 
         <div class="staff-section">
-            <h3 class="text-2xl mt-4">Staff</h3>
+            <h3 class="text-2xl mt-4 font-bold mb-2">Staff</h3>
             <template v-if="staff.length">
                 <template v-for="staffData in staff" :key="staffData.id">
                     <div class="collapse collapse-arrow bg-base-300 mb-4">
@@ -41,7 +41,7 @@
         </div>
 
         <div class="fire-engines-section">
-            <h3 class="text-2xl mt-4">Fire Engines</h3>
+            <h3 class="text-2xl font-bold mt-4 mb-2">Fire Engines</h3>
             <template v-if="fireEngines.length">
 
                 <template v-for="engine in fireEngines" :key="engine.id">
