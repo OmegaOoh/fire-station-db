@@ -48,10 +48,10 @@ class FireFighter(models.Model):
 class Equipment(models.Model):
     """Equipment/ Tools"""
     item_name = models.CharField(max_length=100)
-    date = models.DateField()
+    issue_date = models.DateField()
 
     def __str__(self):
-        return f"{self.item_name} ({self.quantity})"
+        return f"{self.item_name}"
 
 
 class FireEngine(models.Model):
