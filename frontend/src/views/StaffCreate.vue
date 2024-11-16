@@ -1,5 +1,5 @@
 <template>
     <h2>
-        Record Finder
+        staff create
     </h2>
 </template>

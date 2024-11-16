@@ -1,5 +1,5 @@
 <template>
     <h2>
-        Record Finder
+        Station Create
     </h2>
 </template>
