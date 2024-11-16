@@ -6,6 +6,7 @@ from django_enum import EnumField
 
 class Station(models.Model):
     """Station Information. Capacity and Address"""
+    station_name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     staff_capacity = models.IntegerField()
     fire_engine_capacity = models.IntegerField()

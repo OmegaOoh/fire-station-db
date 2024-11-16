@@ -6,7 +6,7 @@ import StationFinder from '@/views/StationFinder.vue'
 import StaffCreate from '@/views/StaffCreate.vue'
 import StationCreate from '@/views/StationCreate.vue'
 import StaffList from '@/views/StaffList.vue'
-import StationIndex from '@/views/StationIndex.vue'
+import StationDetail from '@/views/StationDetail.vue'
 import ItemCreate from '@/views/ItemCreate.vue'
 
 const routes = [
@@ -31,14 +31,14 @@ const routes = [
         component: StationFinder,
     },
     {
-        path:'/station/new',
+        path:'/station/add',
         name: 'stationCreate',
         component: StationCreate,
     },
     {
         path:'/station/:id',
         name: 'stationDetail',
-        component: StationIndex,
+        component: StationDetail,
     },
     {
         path:'/station/:id/add',
