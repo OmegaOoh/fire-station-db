@@ -15,7 +15,7 @@ class DayOfWeek(models.IntegerChoices):
 class Gender(models.TextChoices):
     Male = "Male", "Male"
     Female = "Female", "Female"
-    Other = "Other"
+    Other = "Other", "Other"
 
 
 class FireFighterRank(models.IntegerChoices):
