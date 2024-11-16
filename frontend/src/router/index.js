@@ -2,6 +2,7 @@ import {createRouter, createWebHistory } from 'vue-router'
 import RecordStats from '@/views/RecordStats.vue'
 import RecordFinder from '@/views/RecordFinder.vue'
 import RecordCreate from '@/views/RecordCreate.vue'
+import RecordEdit from '@/views/RecordEdit.vue'
 import StationFinder from '@/views/StationFinder.vue'
 import StaffCreate from '@/views/StaffCreate.vue'
 import StationCreate from '@/views/StationCreate.vue'
@@ -24,6 +25,11 @@ const routes = [
         path: '/find',
         name: 'finder',
         component: RecordFinder,
+    },
+    {
+        path: '/:id/edit',
+        name: 'edit',
+        component: RecordEdit,
     },
     {
         path:'/station',
