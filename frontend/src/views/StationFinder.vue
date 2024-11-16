@@ -33,7 +33,7 @@
 <script setup>
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router'
-
+//import apiClient from '@/api.js' 
 const stations = ref([
     {
         id: 1,
@@ -64,4 +64,16 @@ const stations = ref([
         fire_engine_capacity: 4
     }
 ]);
+
+/*
+const fetchStation = async() => {
+    const response = await apiClient.get('/stations/')
+    stations.value = response.data;
+}
+
+
+onMounted(() => {
+    fetchStation()
+}) 
+*/
 </script>
