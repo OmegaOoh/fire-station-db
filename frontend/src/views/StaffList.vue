@@ -27,21 +27,21 @@
                 <div class="collapse-title text-xl font-medium">{{ staffData.name }}, {{ staffData.station }}
                     <div class="badge badge-secondary" v-if="staffData.fire_fighter_rank">Fire Fighter</div>
                 </div>
-                    <div class="collapse-content grid grid-cols-1 md:grid-cols-2">
-                        <p><strong>Date of Birth:</strong> {{ staffData.dob }}</p>
-                        <p><strong>Gender:</strong> {{ staffData.gender }}</p>
-                        <p><strong>Position:</strong> {{ staffData.position }}</p>
-                        <p v-if="staffData.fire_fighter_rank"><strong>Fire Fighter Rank:</strong> {{ staffData.fire_fighter_rank }}</p>
-                        <p v-if="staffData.fire_fighter_role"><strong>Fire Fighter Role:</strong> {{ staffData.fire_fighter_role }}</p>
-                        <p v-if="staffData.responded"><strong>Dispatch Responded: </strong> {{ staffData.responded }}</p>
-                        <ul class="col-span-2 grid grid-cols-1 md:grid-cols-6"><strong class="col-span-6">
-                            Shifts:
-                        </strong>
-                            <li v-for="(shift, index) in staffData.shift" :key="index">
-                                {{ shift.day }} {{ shift.shift_start }} - {{ shift.shift_end }}
-                            </li>
-                        </ul>
-                    </div>
+                <div class="collapse-content grid grid-cols-1 md:grid-cols-2">
+                    <p><strong>Date of Birth:</strong> {{ staffData.dob }}</p>
+                    <p><strong>Gender:</strong> {{ staffData.gender }}</p>
+                    <p><strong>Position:</strong> {{ staffData.position }}</p>
+                    <p v-if="staffData.fire_fighter_rank"><strong>Fire Fighter Rank:</strong> {{ staffData.fire_fighter_rank }}</p>
+                    <p v-if="staffData.fire_fighter_role"><strong>Fire Fighter Role:</strong> {{ staffData.fire_fighter_role }}</p>
+                    <p v-if="staffData.responded"><strong>Dispatch Responded: </strong> {{ staffData.responded }}</p>
+                    <ul class="col-span-2 grid grid-cols-1 md:grid-cols-6"><strong class="col-span-6">
+                        Shifts:
+                    </strong>
+                        <li v-for="(shift, index) in staffData.shift" :key="index">
+                            {{ shift.day }} {{ shift.shift_start }} - {{ shift.shift_end }}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </template>
     </div>

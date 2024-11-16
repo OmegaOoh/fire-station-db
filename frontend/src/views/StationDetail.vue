@@ -7,7 +7,7 @@
             <p><strong>Fire Engine Capacity:</strong> {{ station.fire_engine_capacity }}</p>
         </div>
 
-        <div class="staff-section">
+        <div>
             <h3 class="text-2xl mt-4 font-bold mb-2">Staff</h3>
             <template v-if="staff.length">
                 <template v-for="staffData in staff" :key="staffData.id">
@@ -40,8 +40,11 @@
             </template>
         </div>
 
-        <div class="fire-engines-section">
-            <h3 class="text-2xl font-bold mt-4 mb-2">Fire Engines</h3>
+        <div>
+            <div class="flex flex-row">
+                <h3 class="text-2xl font-bold mt-4 mb-2 mr-3">Fire Engines</h3> 
+                <router-link class="btn btn-primary" :to="`/station/${station.id}/manage`"> Manage </router-link>
+            </div>
             <template v-if="fireEngines.length">
 
                 <template v-for="engine in fireEngines" :key="engine.id">
@@ -55,7 +58,7 @@
                                 <strong>Equipments:</strong>
                                 <ul class="col-span-2 grid grid-cols-1 md:grid-cols-6 ml-2">
                                     <li v-for="(equipment, index) in engine.equipments" :key="index">
-                                        {{ equipment.item_name }} ({{ equipment.quantity }})
+                                        {{ equipment.item_name }} ({{ equipment.date }})
                                     </li>
                                 </ul>
                             
@@ -86,12 +89,9 @@ const fetchStationDetails = async () => {
     const stationId = route.params.id;
     try {
         const response = await apiClient.get(`/stations/${stationId}/`);
-        station.value = response.data;
-        const staffResponse = await apiClient.get(`/stations/${stationId}/staff/`);
-        staff.value = staffResponse.data;
-
-        const fireEnginesResponse = await apiClient.get(`/stations/${stationId}/fire-engines/`);
-        fireEngines.value = fireEnginesResponse.data;
+        station.value = response.data.station;
+        staff.value = response.data.staff;
+        fireEngines.value = response.data.fireEngine;
     } catch (error) {
         console.error('Error fetching station details:', error);
     }
@@ -146,8 +146,8 @@ const fireEngines = ref([
         model: 'Ford F550',
         license_plate: 'ABC123',
         equipments: [
-            { item_name: 'Hose', quantity: 10 },
-            { item_name: 'Ladder', quantity: 2 }
+            { item_name: 'Hose', date: '06-12-2024' },
+            { item_name: 'Ladder', date: '11-12-2022'}
         ]
     },
     {
@@ -156,8 +156,8 @@ const fireEngines = ref([
         model: 'Chevrolet Silverado',
         license_plate: 'XYZ456',
         equipments: [
-            { item_name: 'Fire Extinguisher', quantity: 5 },
-            { item_name: 'Medical Kit', quantity : 3 }
+            { item_name: 'Fire Extinguisher', date : '10-12-2024' },
+            { item_name: 'Medical Kit', date : '11-16-2024' }
         ]
     }
 ]);

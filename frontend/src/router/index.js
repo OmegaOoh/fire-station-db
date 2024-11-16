@@ -47,7 +47,7 @@ const routes = [
         component: StationDetail,
     },
     {
-        path:'/station/:id/add',
+        path:'/station/:id/manage',
         name: 'addItem',
         component: ItemCreate,
     },
