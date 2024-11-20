@@ -20,7 +20,7 @@
                 </div>
                 <select v-model="gender" class="select select-bordered ml-4 w-full">
                     <option disabled selected>Gender</option>
-                    <option v-for="gender in choices.gender" :key="gender.value" :value="gender.value">
+                    <option v-for="(gender, index) in choices.gender" :key="index" :value="gender.value">
                         {{ gender.label }}
                     </option>
                 </select>
@@ -37,7 +37,7 @@
                 </div>
                 <select v-model="station" class="select select-bordered ml-4 w-full" required>
                     <option disabled selected>Station</option>
-                    <option v-for="station in choices.station" :key="station.id" :value="station.id">
+                    <option v-for="(station, index) in choices.station" :key="index" :value="station.id">
                         {{ station.station_name }}
                     </option>
                 </select>
@@ -70,7 +70,7 @@
                 </div>
                 <select v-model="fireFighterRank" class="select select-bordered ml-4 w-full">
                     <option disabled selected>Rank</option>
-                    <option v-for="rank in choices.FireFighterRank" :key="rank.value">
+                    <option v-for="(rank, index) in choices.FireFighterRank" :key="index" :value="rank.value">
                         {{ rank.label }}
                     </option>
                 </select>
@@ -81,7 +81,7 @@
                 </div>
                 <select v-model="fireFighterRole" class="select select-bordered ml-4 w-full">
                     <option disabled selected>Role</option>
-                    <option v-for="role in choices.FireFighterRole" :key="role.value">
+                    <option v-for="(role, index) in choices.FireFighterRole" :key="index" :value="role.value">
                         {{ role.label }}
                     </option>
                 </select>
