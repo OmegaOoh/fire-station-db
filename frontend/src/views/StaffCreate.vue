@@ -20,7 +20,7 @@
                 </div>
                 <select v-model="gender" class="select select-bordered ml-4 w-full">
                     <option disabled selected>Gender</option>
-                    <option v-for="gender in choices.gender" :key="gender.value">
+                    <option v-for="gender in choices.gender" :key="gender.value" :value="gender.value">
                         {{ gender.label }}
                     </option>
                 </select>
@@ -37,7 +37,7 @@
                 </div>
                 <select v-model="station" class="select select-bordered ml-4 w-full" required>
                     <option disabled selected>Station</option>
-                    <option v-for="station in choices.station" :key="station.id">
+                    <option v-for="station in choices.station" :key="station.id" :value="station.id">
                         {{ station.station_name }}
                     </option>
                 </select>
