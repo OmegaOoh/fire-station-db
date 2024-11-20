@@ -34,11 +34,11 @@ class EquipmentsView(
         :param request: Http request object
         :return: Http response object
         """
-        self.create(request, *args, **kwargs)
+        res = self.create(request, *args, **kwargs)
 
         serializer = self.get_serializer(self.get_queryset(), many=True)
 
-        return response.Response(serializer.data, status=status.HTTP_201_CREATED)
+        return response.Response({"id": res.data.get("id"), "equipments": serializer.data}, status=status.HTTP_201_CREATED)
 
     def delete(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
         """Handle delete request by deleting equipments and return list of equipments.
@@ -55,7 +55,7 @@ class EquipmentsView(
         :return: Http response object
         """
         queryset = self.get_queryset()
-        equipments_id = self.request.GET.get("equipments_to_remove", [])
+        equipments_id = self.request.QUERY_PARAMS.get("equipments_to_remove", [])
         equipments_to_remove = queryset.filter(id__in=equipments_id)
         self.perform_destroy(equipments_to_remove)
 
