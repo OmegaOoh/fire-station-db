@@ -115,17 +115,14 @@ const isFireFighter = ref(false);
 const fireFighterRank = ref('');
 const fireFighterRole = ref('');
 const selectedShifts = ref([]);
-var response = "";
 
 const fetchAvailableChoice = async () => {
-    /**
-    const response = await apiClient.get(`/staff/choice`)
-    */
 
-    response = await apiClient.get(`/fire-station/choice/`)
-
-    // These are Place holder please write an API for it
-    choices.value.gender = response.data.gender
+    // Fetch static choice
+    const choice_res = await apiClient.get(`/fire-station/choice/`)
+    choices.value.FireFighterRole = choice_res.data.fire_fighter_role
+    choices.value.FireFighterRank = choice_res.data.fire_fighter_rank
+    choices.value.gender = choice_res.data.gender
 
     choices.value.shift = [
         'Mon 09:00 - 16:00',
@@ -136,13 +133,8 @@ const fetchAvailableChoice = async () => {
         'Sun 09:00 - 16:00',
     ];
 
-    choices.value.FireFighterRole = response.data.fire_fighter_role
-
-    choices.value.FireFighterRank = response.data.fire_fighter_rank
-
-    response = await apiClient.get(`/fire-station/`)
-    choices.value.station = response.data
-    console.log(choices.value.station)
+    const station_res = await apiClient.get(`/fire-station/`)
+    choices.value.station = station_res.data
 }
 
 const submitData = async() => {
