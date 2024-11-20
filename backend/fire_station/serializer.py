@@ -33,6 +33,7 @@ class StaffSerializer(serializers.ModelSerializer):
     is_fire_fighter = serializers.BooleanField()
     firefighter_detail = FireFighterSerializer(source="firefighter", read_only=True)
     firefighter = serializers.DictField(write_only=True, default=None)
+    station_name = serializers.StringRelatedField(source="station", read_only=True)
 
     class Meta:
         model = models.Staff

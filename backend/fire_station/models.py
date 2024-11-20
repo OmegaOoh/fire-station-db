@@ -11,6 +11,9 @@ class Station(models.Model):
     staff_capacity = models.IntegerField()
     fire_engine_capacity = models.IntegerField()
 
+    def __str__(self) -> str:
+        return self.station_name
+
 
 class Shift(models.Model):
     """Working Shift indicates, Start time, End time and day of weeks."""
