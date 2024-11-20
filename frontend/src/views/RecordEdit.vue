@@ -79,6 +79,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
+import apiClient from '@/api.js'
 
 const route = useRoute(); 
 
@@ -90,6 +91,8 @@ const dispatch = ref({
     equipmentUsed: [],
     fireFighters: []
 });
+const incidentTypes = ref([])
+const stations = ref([])
 
 // Placeholder data
 const choice_res = apiClient.get(`/fire-station/choices/`)
