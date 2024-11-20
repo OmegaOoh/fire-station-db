@@ -11,7 +11,7 @@ class FireStationSerializer(serializers.models):
         fields = ('__all__')
 
 
-class Equipment(serializers.models):
+class EquipmentSerializer(serializers.models):
     """Fire station model serializer"""
     
     class Meta:
