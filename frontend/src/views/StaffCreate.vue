@@ -145,7 +145,7 @@ const submitData = async() => {
     }
     
     let data = {
-        name: fullName.value,
+        full_name: fullName.value,
         dob: dob.value,
         gender: gender.value,
         position: position.value,
@@ -154,15 +154,15 @@ const submitData = async() => {
     }
     
     if (isFireFighter.value) {
-        const extended = {
-            fire_fighter_role: fireFighterRole.value,
-            fire_fighter_rank: fireFighterRank.value
+        const firefighter = {
+            role: fireFighterRole.value,
+            rank: fireFighterRank.value
         }
-        data = { ...data, ...extended }
+        data.firefighter = firefighter
     }
     
     try {
-        await apiClient.post(`/staff/`, data);
+        await apiClient.post(`/fire-station/staff/`, data);
         router.push('/staff/');
     } catch (error) {
         console.error('Submission failed:', error);
