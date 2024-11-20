@@ -55,9 +55,11 @@ class EquipmentsView(
         :return: Http response object
         """
         queryset = self.get_queryset()
-        equipments_id = self.request.QUERY_PARAMS.get("equipments_to_remove", [])
-        equipments_to_remove = queryset.filter(id__in=equipments_id)
-        self.perform_destroy(equipments_to_remove)
+        equipments_ids = self.request.query_params.get("equipments_to_remove", None)
+        parse_id = equipments_ids.split(",")
+        if parse_id:
+            equipments_to_remove = queryset.filter(id__in=parse_id)
+            self.perform_destroy(equipments_to_remove)
 
         serializer = self.get_serializer(self.get_queryset(), many=True)
 
