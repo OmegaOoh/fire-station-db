@@ -9,7 +9,6 @@ from fire_station import models, serializer
 class FireEngineView(
     mixins.ListModelMixin,
     mixins.CreateModelMixin,
-    mixins.DestroyModelMixin,
     mixins.UpdateModelMixin,
     generics.GenericAPIView
 ):
