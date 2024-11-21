@@ -130,17 +130,18 @@ const sampleFireEngines = [
     }
 ];
 
-const addEquipment = () => {
-    if (newEquipmentName.value && newEquipmentDate.value) {
-        const newEquipment = {
-            id: equipments.value.length + 1, // Simulating ID
-            item_name: newEquipmentName.value,
-            date: newEquipmentDate.value
-        };
-        equipments.value.push(newEquipment);
-        newEquipmentName.value = '';
-        newEquipmentDate.value = '';
+const addEquipment = async () => {
+    const data = {
+        item_name: newEquipmentName.value,
+        issue_date: newEquipmentDate.value
     }
+
+    if (!(newEquipmentName.value && newEquipmentDate.value)){
+        return
+    }
+
+    const res = await apiClient.post(`fire-station/equipments/`, data)
+    equipments.value = res.data
 };
 
 const addFireEngine = () => {
@@ -160,8 +161,9 @@ const addFireEngine = () => {
     }
 };
 
-const removeEquipment = (id) => {
-    equipments.value = equipments.value.filter(equipment => equipment.id !== id);
+const removeEquipment = async (id) => {
+    const res = await apiClient.delete(`fire-station/equipments/?equipments_to_remove=${id}`)
+    equipments.value = res.data
 };
 
 const removeEquipmentFromEngine = (equipmentId, engineId) => {
