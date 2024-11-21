@@ -17,3 +17,11 @@ class EquipmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Equipment
         fields = ('__all__')
+
+
+class FireEngineSerializer(serializers.ModelSerializer):
+    """Fire engine model serializer"""
+
+    class Meta:
+        model = models.FireEngine
+        fields = ('__all__')
