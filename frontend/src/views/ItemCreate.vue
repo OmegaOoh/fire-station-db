@@ -22,7 +22,7 @@
                 <h3 class="text-xl font-semibold">Equipment List</h3>
                 <ul class="list-disc pl-5 grid grid-cols-2">
                     <li v-for="equipment in equipments" :key="equipment.id" class="mt-2 grid grid-cols-2">
-                        {{ equipment.item_name }} ({{ formatDate(equipment.date) }})
+                        {{ equipment.item_name }} ({{ formatDate(equipment.issue_date) }})
                         <button @click="removeEquipment(equipment.id)" class="btn btn-error btn-sm w-fit">Remove</button>
                     </li>
                 </ul>
@@ -85,6 +85,7 @@
 </template>
 
 <script setup>
+import apiClient from '@/api';
 import { ref, onMounted } from 'vue';
 
 const station = ref({
@@ -181,7 +182,10 @@ const formatDate = (dateString) => {
 };
 
 const fetchData = async() => {
-    equipments.value = sampleEquipments;
+    const equipment_res = await apiClient.get(`/fire-station/equipments/`)
+    equipments.value = equipment_res.data;
+
+    // equipments.value = sampleEquipments
     fireEngines.value = sampleFireEngines;
 }
 
