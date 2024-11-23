@@ -75,15 +75,12 @@
 
 <script setup>
 import { ref } from 'vue';
-// ACTUAL CODE DO NOT REMOVE
 import { onMounted} from 'vue'
 import { useRoute } from 'vue-router';
 import apiClient from '@/api.js';
 
 const route = useRoute();
 const station = ref({});
-// const staff = ref([]);
-// const fireEngines = ref([]);
 
 const fetchStationDetails = async () => {
     const stationId = route.params.id;
@@ -100,15 +97,6 @@ const fetchStationDetails = async () => {
 onMounted(() => {
     fetchStationDetails()
 })
-
-// PLACE HOLDER
-
-// const station = ref({
-//     station_name: 'Main Fire Station',
-//     address: '123 Main St, Springfield',
-//     staff_capacity: 20,
-//     fire_engine_capacity: 5
-// });
 
 const staff = ref([
     {
