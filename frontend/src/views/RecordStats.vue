@@ -111,10 +111,10 @@ const filterData = async() => {
         filterParam['station'] = selectedStation.value
     }
     if (selectedMonth.value) {
-        filterParam['month'] = selectedStation.value
+        filterParam['month'] = selectedMonth.value
     }
     if (selectedIncidentType.value) {
-        filterParam['incident'] = selectedStation.value
+        filterParam['incident'] = selectedIncidentType.value
     }
 
     // const response = apiClient.get(apiPath, {params: filterParam})
