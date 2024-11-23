@@ -9,7 +9,7 @@
                 <select v-model="dispatch.incident" class="select select-bordered w-full" required>
                     <option disabled value="">Select an incident type</option>
                     <option v-for="(incident, index) in incidentTypes" :key="index" :value="incident.value">
-                        {{ incident.text }}
+                        {{ incident.label }}
                     </option>
                 </select>
             </div>
@@ -27,7 +27,7 @@
                 </label>
                 <select v-model="dispatch.station" class="select select-bordered w-full" required>
                     <option disabled value="">Select a station</option>
-                    <option v-for="station in stations" :key="station.id" :value="station.id">
+                    <option v-for="(station, index) in stations" :key="index" :value="station.id">
                         {{ station.name }}
                     </option>
                 </select>
@@ -77,6 +77,7 @@
 </template>
 
 <script setup>
+import apiClient from '@/api';
 import { ref } from 'vue';
 
 const dispatch = ref({
@@ -87,27 +88,15 @@ const dispatch = ref({
     equipmentUsed: [],
     fireFighters: []
 });
+const incidentTypes = ref([])
+const stations = ref([])
 
-// Placeholder data
-const incidentTypes = ref([
-    { value: 1, text: "Structure Fire" },
-    { value: 2, text : "Wild Fire" },
-    { value: 3, text: "Vehicle Fire" },
-    { value: 4, text: "Hazmat Fire" },
-    { value: 5, text: "Medical Emergency" },
-    { value: 6, text: "Vehicle Accident" },
-    { value: 7, text: "Water Rescue" },
-    { value: 8, text: "Hazmat Incident" },
-    { value: 9, text: "Natural Disaster" },
-    { value: 10, text: "Technical Rescue" }
-]);
 
-const stations = ref([
-    { id: 1, name: 'Main Fire Station' },
-    { id: 2, name: 'Downtown Fire Station' },
-    { id: 3, name: 'Northside Fire Station' },
-    { id: 4, name: 'Westside Fire Station' }
-]);
+const choice_res = apiClient.get(`/fire-station/choices/`)
+incidentTypes.value = choice_res.data.incident_type
+
+const station_res = await apiClient.get(`/fire-station/`)
+stations.value = station_res.data
 
 const fireEngines = ref([
     { id: 1, engine_number: '103', selected: false },

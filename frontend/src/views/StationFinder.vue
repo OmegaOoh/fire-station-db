@@ -33,47 +33,46 @@
 <script setup>
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router'
-//import apiClient from '@/api.js' 
-const stations = ref([
-    {
-        id: 1,
-        station_name: 'Main Fire Station',
-        address: '123 Main St, Springfield',
-        staff_capacity: 20,
-        fire_engine_capacity: 5
-    },
-    {
-        id: 2,
-        station_name: 'Downtown Fire Station',
-        address: '456 Elm St, Springfield',
-        staff_capacity: 15,
-        fire_engine_capacity: 3
-    },
-    {
-        id: 3,
-        station_name: 'Northside Fire Station',
-        address: '789 Oak St, Springfield',
-        staff_capacity: 10,
-        fire_engine_capacity: 2
-    },
-    {
-        id: 4,
-        station_name: 'Westside Fire Station',
-        address: '321 Pine St, Springfield',
-        staff_capacity: 18,
-        fire_engine_capacity: 4
-    }
-]);
+import { onMounted } from 'vue'
+import apiClient from '@/api.js' 
+const stations = ref([]);
+//     {
+//         id: 1,
+//         station_name: 'Main Fire Station',
+//         address: '123 Main St, Springfield',
+//         staff_capacity: 20,
+//         fire_engine_capacity: 5
+//     },
+//     {
+//         id: 2,
+//         station_name: 'Downtown Fire Station',
+//         address: '456 Elm St, Springfield',
+//         staff_capacity: 15,
+//         fire_engine_capacity: 3
+//     },
+//     {
+//         id: 3,
+//         station_name: 'Northside Fire Station',
+//         address: '789 Oak St, Springfield',
+//         staff_capacity: 10,
+//         fire_engine_capacity: 2
+//     },
+//     {
+//         id: 4,
+//         station_name: 'Westside Fire Station',
+//         address: '321 Pine St, Springfield',
+//         staff_capacity: 18,
+//         fire_engine_capacity: 4
+//     }
+// ]);
 
-/*
 const fetchStation = async() => {
-    const response = await apiClient.get('/stations/')
+    const response = await apiClient.get('/fire-station/')
     stations.value = response.data;
 }
-
 
 onMounted(() => {
     fetchStation()
 }) 
-*/
+
 </script>

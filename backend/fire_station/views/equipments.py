@@ -34,7 +34,7 @@ class EquipmentsView(
         :param request: Http request object
         :return: Http response object
         """
-        res = self.create(request, *args, **kwargs)
+        self.create(request, *args, **kwargs)
 
         serializer = self.get_serializer(self.get_queryset(), many=True)
 
