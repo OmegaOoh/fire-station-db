@@ -145,10 +145,17 @@ const removeEquipment = async (id) => {
     equipments.value = res.data
 };
 
-const removeEquipmentFromEngine = (equipmentId, engineId) => {
+const removeEquipmentFromEngine = async (equipmentId, engineId) => {
     const engine = fireEngines.value.find(engine => engine.id === engineId);
+    
     if (engine) {
-        engine.equipments = engine.equipments.filter(equipment => equipment.id !== equipmentId);
+        const removedEquipment = engine.equipments.filter(equip_id => equip_id != equipmentId);
+        const data = {
+            id: engine.id,
+            equipments: removedEquipment
+        }
+        await apiClient.put(`/fire-station/fire-engine/`, data)
+        fetchData()
     }
 };
 
