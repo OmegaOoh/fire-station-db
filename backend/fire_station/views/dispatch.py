@@ -9,6 +9,7 @@ from fire_station import models, serializer
 class DispatchView(
     mixins.ListModelMixin,
     mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
     generics.GenericAPIView
 ):
     """Return list of dispatches when GET request and create new dispatches when POST request."""
@@ -38,3 +39,11 @@ class DispatchView(
         serializer = self.get_serializer(self.get_queryset(), many=True)
 
         return response.Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def put(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
+        """Handle put request by updating dispatches and return list of dispatches."""
+        self.update(request, partial=True, *args, **kwargs)
+
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+
+        return response.Response(serializer.data, status=status.HTTP_200_OK)
