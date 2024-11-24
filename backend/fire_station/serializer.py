@@ -2,16 +2,6 @@
 from rest_framework import serializers
 from . import models
 
-
-class FireStationSerializer(serializers.ModelSerializer):
-class FireStationSerializer(serializers.ModelSerializer):
-    """Fire station model serializer"""
-
-    class Meta:
-        model = models.Station
-        fields = ('__all__')
-
-
 class EquipmentSerializer(serializers.ModelSerializer):
     """Equipment model serializer"""
     
@@ -23,6 +13,18 @@ class EquipmentSerializer(serializers.ModelSerializer):
 class FireEngineSerializer(serializers.ModelSerializer):
     """Fire engine model serializer"""
 
+    equipment_detail = EquipmentSerializer(source='equipments', many=True, read_only=True)
+        
     class Meta:
         model = models.FireEngine
+        fields = ('__all__')
+
+
+class FireStationSerializer(serializers.ModelSerializer):
+    """Fire station model serializer"""
+    
+    fire_engine = FireEngineSerializer(source='fireengine_set', many=True, read_only=True)
+
+    class Meta:
+        model = models.Station
         fields = ('__all__')

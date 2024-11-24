@@ -70,8 +70,8 @@
                         <div class="collapse-content">
                             <p class="Equipments:"></p>
                             <ul class="pl-5 list-disc">
-                                <li v-for="equipment in engine.equipments" :key="equipment.id" class="grid grid-cols-2 mt-2">
-                                    {{ equipment.item_name }} ({{ formatDate(equipment.date) }})
+                                <li v-for="equipment in engine.equipment_detail" :key="equipment.id" class="grid grid-cols-2 mt-2">
+                                    {{ equipment.item_name }} ({{ formatDate(equipment.issue_date) }})
                                     <button @click="removeEquipmentFromEngine(equipment.id, engine.id)" class="btn btn-error btn-sm w-fit">Remove</button>
                                 </li>
                             </ul>
@@ -87,7 +87,9 @@
 <script setup>
 import apiClient from '@/api';
 import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
 const station = ref({
     station_name: 'Main Fire Station',
     address: '123 Main St, Springfield',
@@ -105,30 +107,30 @@ const newEngineLicensePlate = ref('');
 const selectedEquipments = ref([]);
 
 // Sample placeholder data for equipment
-const sampleEquipments = [
-    { id: 1, item_name: "Fire Hose", date: "2022-01-15" },
-    { id: 2, item_name: "Axe", date: "2022-02-20" },
-    { id: 3, item_name: "Fire Extinguisher", date: "2022-03-10" },
-    { id: 4, item_name: "Ladder", date: "2022-04-05" },
-];
+// const sampleEquipments = [
+//     { id: 1, item_name: "Fire Hose", date: "2022-01-15" },
+//     { id: 2, item_name: "Axe", date: "2022-02-20" },
+//     { id: 3, item_name: "Fire Extinguisher", date: "2022-03-10" },
+//     { id: 4, item_name: "Ladder", date: "2022-04-05" },
+// ];
 
 // Sample placeholder data for fire engines
-const sampleFireEngines = [
-    {
-        id: 1, 
-        engine_number: "101", 
-        model: "Ford F-550", 
-        license_plate: "ABC-1234", 
-        equipments: [sampleEquipments[0], sampleEquipments[1]]
-    },
-    {
-        id: 2, 
-        engine_number: "102", 
-        model: "Chevrolet Silverado", 
-        license_plate: "XYZ-5678", 
-        equipments: [sampleEquipments[2], sampleEquipments[3]]
-    }
-];
+// const sampleFireEngines = [
+//     {
+//         id: 1, 
+//         engine_number: "101", 
+//         model: "Ford F-550", 
+//         license_plate: "ABC-1234", 
+//         equipments: [sampleEquipments[0], sampleEquipments[1]]
+//     },
+//     {
+//         id: 2, 
+//         engine_number: "102", 
+//         model: "Chevrolet Silverado", 
+//         license_plate: "XYZ-5678", 
+//         equipments: [sampleEquipments[2], sampleEquipments[3]]
+//     }
+// ];
 
 const addEquipment = async () => {
     const data = {
@@ -147,13 +149,16 @@ const addEquipment = async () => {
 const addFireEngine = () => {
     if (newEngineNumber.value && newEngineModel.value && newEngineLicensePlate.value) {
         const newFireEngine = {
-            id: fireEngines.value.length + 1, // Simulating ID
+            station: route.params.id,
             engine_number: newEngineNumber.value,
             model: newEngineModel.value,
             license_plate: newEngineLicensePlate.value,
-            equipments: selectedEquipments.value.map(id => equipments.value.find(eq => eq.id === id))
+            equipments: selectedEquipments.value
         };
-        fireEngines.value.push(newFireEngine);
+
+        apiClient.post(`/fire-station/fire-engine/`, newFireEngine)
+        fetchData()
+        
         newEngineNumber.value = '';
         newEngineModel.value = '';
         newEngineLicensePlate.value = '';
@@ -184,11 +189,15 @@ const formatDate = (dateString) => {
 };
 
 const fetchData = async() => {
+
+    
+
     const equipment_res = await apiClient.get(`/fire-station/equipments/`)
     equipments.value = equipment_res.data;
 
-    // equipments.value = sampleEquipments
-    fireEngines.value = sampleFireEngines;
+    const station_res = await apiClient.get(`/fire-station/${route.params.id}`)
+    station.value = station_res.data
+    fireEngines.value = station_res.data.fire_engine;
 }
 
 onMounted(() => {

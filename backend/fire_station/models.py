@@ -60,7 +60,7 @@ class FireEngine(models.Model):
     model = models.CharField(max_length=100)
     license_plate = models.CharField(max_length=10)
     station = models.ForeignKey(Station, on_delete=models.CASCADE)
-    equipments = models.ManyToManyField(Equipment)
+    equipments = models.ManyToManyField(Equipment, blank=True)
 
     def __str__(self):
         return f"{self.model} license plate: {self.license_plate}"
