@@ -106,32 +106,6 @@ const newEngineModel = ref('');
 const newEngineLicensePlate = ref('');
 const selectedEquipments = ref([]);
 
-// Sample placeholder data for equipment
-// const sampleEquipments = [
-//     { id: 1, item_name: "Fire Hose", date: "2022-01-15" },
-//     { id: 2, item_name: "Axe", date: "2022-02-20" },
-//     { id: 3, item_name: "Fire Extinguisher", date: "2022-03-10" },
-//     { id: 4, item_name: "Ladder", date: "2022-04-05" },
-// ];
-
-// Sample placeholder data for fire engines
-// const sampleFireEngines = [
-//     {
-//         id: 1, 
-//         engine_number: "101", 
-//         model: "Ford F-550", 
-//         license_plate: "ABC-1234", 
-//         equipments: [sampleEquipments[0], sampleEquipments[1]]
-//     },
-//     {
-//         id: 2, 
-//         engine_number: "102", 
-//         model: "Chevrolet Silverado", 
-//         license_plate: "XYZ-5678", 
-//         equipments: [sampleEquipments[2], sampleEquipments[3]]
-//     }
-// ];
-
 const addEquipment = async () => {
     const data = {
         item_name: newEquipmentName.value,
@@ -158,7 +132,7 @@ const addFireEngine = () => {
 
         apiClient.post(`/fire-station/fire-engine/`, newFireEngine)
         fetchData()
-        
+
         newEngineNumber.value = '';
         newEngineModel.value = '';
         newEngineLicensePlate.value = '';
