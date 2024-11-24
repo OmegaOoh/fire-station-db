@@ -20,7 +20,7 @@ class DispatchView(
         return models.Dispatch.objects.all()
 
     def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
-        """Handle get request by return with list of equipments.
+        """Handle get request by return with list of dispatches.
 
         :param request: Http request object
         :return: Http response object
