@@ -17,3 +17,11 @@ class EquipmentSerializer(serializers.models):
     class Meta:
         model = models.Station
         fields = ('__all__')
+
+
+class DispatchSerializer(serializers.ModelSerializer):
+    """Dispatch model serializer"""
+
+    class Meta:
+        model = models.Dispatch
+        fields = ('__all__')
