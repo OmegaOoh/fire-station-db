@@ -120,7 +120,7 @@ const addEquipment = async () => {
     equipments.value = res.data
 };
 
-const addFireEngine = () => {
+const addFireEngine = async () => {
     if (newEngineNumber.value && newEngineModel.value && newEngineLicensePlate.value) {
         const newFireEngine = {
             station: route.params.id,
@@ -130,7 +130,7 @@ const addFireEngine = () => {
             equipments: selectedEquipments.value
         };
 
-        apiClient.post(`/fire-station/fire-engine/`, newFireEngine)
+        await apiClient.post(`/fire-station/fire-engine/`, newFireEngine)
         fetchData()
 
         newEngineNumber.value = '';
@@ -152,8 +152,9 @@ const removeEquipmentFromEngine = (equipmentId, engineId) => {
     }
 };
 
-const removeFireEngine = (id) => {
-    fireEngines.value = fireEngines.value.filter(engine => engine.id !== id);
+const removeFireEngine = async(id) => {
+    await apiClient.delete(`/fire-station/fire-engine/?id=${id}`)
+    fetchData()
 };
 
 // Function to format date

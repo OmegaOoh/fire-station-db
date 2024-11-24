@@ -19,7 +19,7 @@ class FireEngineView(
     def get_queryset(self) -> QuerySet:
         """FireEngine view return list of fire engines."""
         return models.FireEngine.objects.all()
-
+    
     def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
         """Handle get request by return with list of fire engines.
 
@@ -64,7 +64,17 @@ class FireEngineView(
 
         serializer = self.get_serializer(self.get_queryset(), many=True)
         return response.Response(serializer.data, status=status.HTTP_200_OK)
-
+    
+    def delete(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
+        """Delete fire engine"""
+        fire_engine_id = request.GET.get('id')
+        obj = self.get_queryset().get(pk=fire_engine_id)
+        obj.delete()
+        
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+        return response.Response(serializer.data)
+        
+        
     def __check_fire_engine_capacity(self, request, *args, **kwargs):
         """Check if number of fire engines exceed the capacity."""
         fire_station_id = request.data.get('station')
