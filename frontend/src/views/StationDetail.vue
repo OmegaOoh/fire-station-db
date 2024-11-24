@@ -57,8 +57,8 @@
                                 <p><strong>License Plate:</strong> {{ engine.license_plate }}</p>
                                 <strong>Equipments:</strong>
                                 <ul class="col-span-2 grid grid-cols-1 md:grid-cols-6 ml-2">
-                                    <li v-for="(equipment, index) in engine.equipments" :key="index">
-                                        {{ equipment.item_name }} ({{ equipment.date }})
+                                    <li v-for="(equipment, index) in engine.equipment_detail" :key="index">
+                                        {{ equipment.item_name }} ({{ equipment.issue_date }})
                                     </li>
                                 </ul>
                             
@@ -81,12 +81,15 @@ import apiClient from '@/api.js';
 
 const route = useRoute();
 const station = ref({});
+// const staff = ref([]);
+const fireEngines = ref([]);
 
 const fetchStationDetails = async () => {
     const stationId = route.params.id;
     try {
         const response = await apiClient.get(`/fire-station/${stationId}/`);
         station.value = response.data;
+        fireEngines.value = response.data.fire_engine
         // staff.value = response.data.staff;
         // fireEngines.value = response.data.fireEngine;
     } catch (error) {
@@ -125,27 +128,27 @@ const staff = ref([
     }
 ]);
 
-const fireEngines = ref([
-    {
-        id: 1,
-        engine_number: 101,
-        model: 'Ford F550',
-        license_plate: 'ABC123',
-        equipments: [
-            { item_name: 'Hose', date: '06-12-2024' },
-            { item_name: 'Ladder', date: '11-12-2022'}
-        ]
-    },
-    {
-        id: 2,
-        engine_number: 102,
-        model: 'Chevrolet Silverado',
-        license_plate: 'XYZ456',
-        equipments: [
-            { item_name: 'Fire Extinguisher', date : '10-12-2024' },
-            { item_name: 'Medical Kit', date : '11-16-2024' }
-        ]
-    }
-]);
+// const fireEngines = ref([
+//     {
+//         id: 1,
+//         engine_number: 101,
+//         model: 'Ford F550',
+//         license_plate: 'ABC123',
+//         equipments: [
+//             { item_name: 'Hose', date: '06-12-2024' },
+//             { item_name: 'Ladder', date: '11-12-2022'}
+//         ]
+//     },
+//     {
+//         id: 2,
+//         engine_number: 102,
+//         model: 'Chevrolet Silverado',
+//         license_plate: 'XYZ456',
+//         equipments: [
+//             { item_name: 'Fire Extinguisher', date : '10-12-2024' },
+//             { item_name: 'Medical Kit', date : '11-16-2024' }
+//         ]
+//     }
+// ]);
 
 </script>
