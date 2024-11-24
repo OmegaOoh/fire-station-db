@@ -4,7 +4,6 @@ from . import models
 
 
 class FireStationSerializer(serializers.ModelSerializer):
-class FireStationSerializer(serializers.ModelSerializer):
     """Fire station model serializer"""
 
     class Meta:
