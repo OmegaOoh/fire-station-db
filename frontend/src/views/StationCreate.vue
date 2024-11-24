@@ -7,7 +7,7 @@
                         <span class="label-text text-xl">Station name:</span>
                     </div>
                 <input 
-                    v-model="station.name" 
+                    v-model="station.station_name" 
                     type="text" 
                     id="name" 
                     name="name" 
@@ -47,7 +47,7 @@
                         <span class="label-text text-xl">Engine Capacity:</span>
                     </div>
                     <input 
-                    v-model="station.engine_capacity" 
+                    v-model="station.fire_engine_capacity" 
                     type="number" 
                     id="engine_capacity" 
                     name="engine_capacity" 
@@ -68,7 +68,7 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const station = ref({
-    name: '',
+    station_name: '',
     address: '',
     staff_capacity: null,
     fire_engine_capacity: null
@@ -76,7 +76,7 @@ const station = ref({
 
 const submitData = async () => {
     try {
-        await apiClient.post('/station/', station.value);
+        await apiClient.post('/fire-station/', station.value);
         console.log(station.value)
     } catch (error) {
         console.error('Error creating station:', error);
