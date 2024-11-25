@@ -3,7 +3,7 @@ from rest_framework import serializers
 from . import models
 
 
-class FireStationSerializer(serializers.models):
+class FireStationSerializer(serializers.ModelSerializer):
     """Fire station model serializer"""
     
     class Meta:
@@ -11,7 +11,7 @@ class FireStationSerializer(serializers.models):
         fields = ('__all__')
 
 
-class EquipmentSerializer(serializers.models):
+class EquipmentSerializer(serializers.ModelSerializer):
     """Fire station model serializer"""
     
     class Meta:
