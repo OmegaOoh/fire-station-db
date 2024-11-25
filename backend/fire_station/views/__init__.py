@@ -1,3 +1,2 @@
-from .views import test_view
+from .firestation_views import FireStationView, FireStationDetailView
 from .equipments import EquipmentsView
-from .firestation_views import FireStationView
