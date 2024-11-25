@@ -84,8 +84,8 @@ class DispatchAggregate(
 
         return queryset
 
-    def post(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
-        """Handle post request by aggregating dispatches.
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
+        """Handle get request by aggregating dispatches.
 
         :param request: Http request object
         :return: Http response object
@@ -95,9 +95,8 @@ class DispatchAggregate(
         group_by : str = self.request.query_params.get('group_by')  # incident, station, or any valid attributes
 
         if group_by:
-
             aggregate_data = queryset.values(group_by).annotate(average_time_resolved=Avg(F('notified_time') - F('resolved_time')), number_of_dispatches=Count('id'))
+        else:
+            aggregate_data = queryset.aggregate(average_time_resolved=Avg(F('notified_time') - F('resolved_time')), number_of_dispatches=Count('id'))
 
-            return response.Response(aggregate_data, status=status.HTTP_200_OK)
-
-        return response.Response({'messages': 'No "group by" value specified.'}, status=status.HTTP_400_BAD_REQUEST)
+        return response.Response(aggregate_data, status=status.HTTP_200_OK)
