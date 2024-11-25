@@ -5,7 +5,7 @@ from . import models
 
 class FireStationSerializer(serializers.ModelSerializer):
     """Fire station model serializer"""
-    
+
     class Meta:
         model = models.Station
         fields = ('__all__')
@@ -13,7 +13,7 @@ class FireStationSerializer(serializers.ModelSerializer):
 
 class EquipmentSerializer(serializers.ModelSerializer):
     """Fire station model serializer"""
-    
+
     class Meta:
         model = models.Station
         fields = ('__all__')
