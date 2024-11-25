@@ -1,9 +1,10 @@
 """Module for handle dispatch."""
 from typing import Any
 from django.http import HttpRequest
-from django.db.models import QuerySet
+from django.db.models import QuerySet, Count, Avg, F
 from rest_framework import generics, mixins, response, status
 from fire_station import models, serializer
+from django.utils import dateparse
 
 
 class DispatchView(
@@ -17,7 +18,7 @@ class DispatchView(
     serializer_class = serializer.DispatchSerializer
 
     def get_queryset(self) -> QuerySet:
-        """Equipments view return list of all dispatches."""
+        """Dispatches view return list of all dispatches."""
         return models.Dispatch.objects.all()
 
     def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
@@ -47,3 +48,56 @@ class DispatchView(
         serializer = self.get_serializer(self.get_queryset(), many=True)
 
         return response.Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class DispatchAggregate(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    generics.GenericAPIView
+):
+    """Dispatch aggregate view."""
+
+    serializer_class = serializer.DispatchSerializer
+
+    def get_queryset(self) -> QuerySet:
+        """Dispatch aggregate view return aggregated dispatches data."""
+        queryset = models.Dispatch.objects.all()
+
+        months = self.request.query_params.get("months")
+        if months:
+            parse_months = months.split(",")
+            queryset = queryset.filter(reported_time__month__in=parse_months)
+
+        # 2023-03-15T14:30 example format
+        try:
+            start_time = dateparse.parse_datetime(self.request.query_params.get("start_time"))
+            queryset = queryset.filter(reported_time__gte=start_time)
+        except (ValueError, TypeError):
+            pass
+
+        try:
+            end_time = dateparse.parse_datetime(self.request.query_params.get("end_time"))
+            queryset = queryset.filter(reported_time__lte=end_time)
+        except (ValueError, TypeError):
+            pass
+
+        return queryset
+
+    def post(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
+        """Handle post request by aggregating dispatches.
+
+        :param request: Http request object
+        :return: Http response object
+        """
+        queryset = self.get_queryset()
+
+        group_by : str = self.request.query_params.get('group_by')  # incident, station, or any valid attributes
+
+        if group_by:
+
+            aggregate_data = queryset.values(group_by).annotate(average_time_resolved=Avg(F('notified_time') - F('resolved_time')), number_of_dispatches=Count('id'))
+
+            return response.Response(aggregate_data, status=status.HTTP_200_OK)
+
+        return response.Response({'messages': 'No "group by" value specified.'}, status=status.HTTP_400_BAD_REQUEST)
