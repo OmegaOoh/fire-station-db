@@ -2,6 +2,7 @@
 from rest_framework import serializers
 from . import models
 
+
 class EquipmentSerializer(serializers.ModelSerializer):
     """Equipment model serializer"""
     
@@ -14,21 +15,12 @@ class FireEngineSerializer(serializers.ModelSerializer):
     """Fire engine model serializer"""
 
     equipment_detail = EquipmentSerializer(source='equipments', many=True, read_only=True)
+    
         
     class Meta:
         model = models.FireEngine
         fields = ('__all__')
-
-
-class FireStationSerializer(serializers.ModelSerializer):
-    """Fire station model serializer"""
-    
-    fire_engine = FireEngineSerializer(source='fireengine_set', many=True, read_only=True)
-
-    class Meta:
-        model = models.Station
-        fields = ('__all__')
-
+        
 
 class FireFighterSerializer(serializers.ModelSerializer):
     """Fire fighter model serializer"""
@@ -64,3 +56,14 @@ class StaffSerializer(serializers.ModelSerializer):
             ff_serializer.save()
 
         return staff
+    
+    
+class FireStationSerializer(serializers.ModelSerializer):
+    """Fire station model serializer"""
+    
+    fire_engine = FireEngineSerializer(source='fireengine_set', many=True, read_only=True)
+    staff = StaffSerializer(source='staff_set', many=True, read_only=True)
+
+    class Meta:
+        model = models.Station
+        fields = ('__all__')
