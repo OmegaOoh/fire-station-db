@@ -1,12 +1,27 @@
 <template>
     <div class="pt-4 px-4">
         <h2 class="font-bold text-4xl pb-4">{{ station.station_name }}</h2>
+        <!--Overall Data-->
         <div class="grid grid-cols-2 ml-4 text-xl">
             <p class="col-span-2"><strong>Address:</strong> {{ station.address }}</p>
             <p><strong>Staff Capacity:</strong> {{ station.staff_capacity }}</p>
             <p><strong>Fire Engine Capacity:</strong> {{ station.fire_engine_capacity }}</p>
+            <p class="font-bold text-2xl">Staff on each Rank</p>
+            <div class="stats bg-base-200 shadow w-full">
+                <div class="stat place-items-center" v-for="(data, index) in responseData.roles" :key="index">
+                    <div class="stat-title">{{ data.role }}</div>
+                    <div class="stat-value" :class="colorByIndex(index)">{{ data.amount }} <span class="stat-desc text-lg">Role</span></div>
+                </div>
+            </div>
+            <p class="font-bold text-2xl">Firefighter on each Rank</p>
+            <div class="stats bg-base-200 shadow w-full">
+                <div class="stat place-items-center" v-for="(data, index) in responseData.ranks" :key="index">
+                    <div class="stat-title">{{ data.rank }}</div>
+                    <div class="stat-value" :class="colorByIndex(index)">{{ data.amount }} <span class="stat-desc text-lg">Role</span></div>
+                </div>
+            </div>
         </div>
-
+        <!--Staff and Equipments-->
         <div>
             <h3 class="text-2xl mt-4 font-bold mb-2">Staff</h3>
             <template v-if="staff.length">
@@ -147,5 +162,9 @@ const fireEngines = ref([
         ]
     }
 ]);
+
+const colorByIndex = (index) => {
+    return index % 2 === 0 ? 'text-neutral-content' : 'text-primary';
+}
 
 </script>
