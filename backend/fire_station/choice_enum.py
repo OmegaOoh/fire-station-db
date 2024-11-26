@@ -1,4 +1,7 @@
 from django.db import models
+from rest_framework import decorators, request, response
+from django.db.models import enums
+from typing import Any
 
 
 class DayOfWeek(models.IntegerChoices):
@@ -53,3 +56,20 @@ class IncidentType(models.IntegerChoices):
     HAZMAT_INCIDENT = 8, "Hazmat Accident"
     NATURAL_DISASTER = 9, "Natural Disaster"
     TECHNICAL_RESCUE = 10, "Technical Rescue"
+
+
+def convert_enum(enum_cls: enums) -> list[dict[Any, Any]]:
+    return [{'value': enum.value, 'label': enum.label} for enum in enum_cls]
+
+
+@decorators.api_view(['GET'])
+def get_choice(request: request.HttpRequest) -> response.Response:
+    return response.Response(
+        {
+            'day_of_week': convert_enum(DayOfWeek),
+            'gender': convert_enum(Gender),
+            'fire_fighter_rank': convert_enum(FireFighterRank),
+            'fire_fighter_role': convert_enum(FireFighterRole),
+            'incident_type': convert_enum(IncidentType)
+        }
+    )

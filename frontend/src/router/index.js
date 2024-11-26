@@ -10,6 +10,7 @@ import StaffList from '@/views/StaffList.vue'
 import StationDetail from '@/views/StationDetail.vue'
 import ItemCreate from '@/views/ItemCreate.vue'
 import StaffEdit from '@/views/StaffEdit.vue'
+import ShiftManager from '@/views/ShiftManager.vue'
 
 const routes = [
     {
@@ -66,6 +67,11 @@ const routes = [
         path:'/staff/add',
         name: 'staffCreate',
         component: StaffCreate,
+    },
+    {
+        path:'/shift',
+        name: 'shift',
+        component: ShiftManager,
     },
 ]
 

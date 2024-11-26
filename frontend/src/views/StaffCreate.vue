@@ -20,8 +20,8 @@
                 </div>
                 <select v-model="gender" class="select select-bordered ml-4 w-full">
                     <option disabled selected>Gender</option>
-                    <option v-for="(gender, index) in choices.gender" :key="index">
-                        {{ gender }}
+                    <option v-for="(gender, index) in choices.gender" :key="index" :value="gender.value">
+                        {{ gender.label }}
                     </option>
                 </select>
             </label>
@@ -37,8 +37,8 @@
                 </div>
                 <select v-model="station" class="select select-bordered ml-4 w-full" required>
                     <option disabled selected>Station</option>
-                    <option v-for="(station, index) in choices.station" :key="index">
-                        {{ station }}
+                    <option v-for="(station, index) in choices.station" :key="index" :value="station.id">
+                        {{ station.station_name }}
                     </option>
                 </select>
             </label>
@@ -70,8 +70,8 @@
                 </div>
                 <select v-model="fireFighterRank" class="select select-bordered ml-4 w-full">
                     <option disabled selected>Rank</option>
-                    <option v-for="(rank, index) in choices.FireFighterRank" :key="index">
-                        {{ rank }}
+                    <option v-for="(rank, index) in choices.FireFighterRank" :key="index" :value="rank.value">
+                        {{ rank.label }}
                     </option>
                 </select>
             </label>
@@ -81,8 +81,8 @@
                 </div>
                 <select v-model="fireFighterRole" class="select select-bordered ml-4 w-full">
                     <option disabled selected>Role</option>
-                    <option v-for="(role, index) in choices.FireFighterRole" :key="index">
-                        {{ role }}
+                    <option v-for="(role, index) in choices.FireFighterRole" :key="index" :value="role.value">
+                        {{ role.label }}
                     </option>
                 </select>
             </label>
@@ -117,16 +117,12 @@ const fireFighterRole = ref('');
 const selectedShifts = ref([]);
 
 const fetchAvailableChoice = async () => {
-    /**
-    const response = await apiClient.get(`/staff/choice`)
-    */
 
-    // These are Place holder please write an API for it
-    choices.value.gender = [
-        'Male',
-        'Female',
-        'Other'
-    ];
+    // Fetch static choice
+    const choice_res = await apiClient.get(`/fire-station/choice/`)
+    choices.value.FireFighterRole = choice_res.data.fire_fighter_role
+    choices.value.FireFighterRank = choice_res.data.fire_fighter_rank
+    choices.value.gender = choice_res.data.gender
 
     choices.value.shift = [
         'Mon 09:00 - 16:00',
@@ -137,32 +133,8 @@ const fetchAvailableChoice = async () => {
         'Sun 09:00 - 16:00',
     ];
 
-    choices.value.FireFighterRole = [
-        "Incident Commander",
-        "Company Officer",
-        "Hoseline Operator",
-        "Nozzle Operator",
-        "Vent Technician",
-        "Search and Rescue Technician",
-        "Medical Technician",
-    ];
-
-    choices.value.FireFighterRank = [
-        "FireFighter",
-        "Engineer",
-        "Lieutenant",
-        "Captain",
-        "District Chief",
-        "Division Chief",
-        "Deputy Fire Chief",
-        "Fire Chief",
-    ];
-
-    choices.value.station = [
-        'Station A',
-        'Station B',
-        'Station C',
-    ];
+    const station_res = await apiClient.get(`/fire-station/`)
+    choices.value.station = station_res.data
 }
 
 const submitData = async() => {
