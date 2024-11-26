@@ -55,8 +55,8 @@
         <div class="stats bg-base-200 shadow w-full">
             <div class="stat place-items-center" v-for="(data, index) in responseData.by_station" :key="data.station">
                 <div class="stat-title">{{ data.station }}</div>
-                <div class="stat-value" :class="colorByIndex(index)">{{ data.dispatch }}</div>
-                <div class="stat-desc">Dispatched</div>
+                <div class="stat-value" :class="colorByIndex(index)">{{ data.dispatch }} <span class="stat-desc text-lg">Dispatched</span></div>
+                <div class="stat-desc text-sm font-semibold" :class="colorByIndex(index + 1)"> Avg. {{ data.avg_time_resolved }} Minutes</div>
             </div>
         </div>
     </div>
@@ -76,7 +76,8 @@ const responseData = ref({
     active_duty: 8,
     avg_time_resolved: 25,
     by_station: [ 
-        {station: 'Main Station', dispatch: 200} // All if no filter
+        {station: 'Main Station', dispatch: 200, avg_time_resolved: 10}, // All if no filter
+        {station: 'North Station', dispatch: 215, avg_time_resolved: 20} // All if no filter
     ],
     by_month: [ // Alter this on filter
         { month: 'Jan', dispatch: 230 },
@@ -123,6 +124,6 @@ const filterData = async() => {
 };
 
 const colorByIndex = (index) => {
-    return index % 2 === 0 ? '' : 'text-primary';
+    return index % 2 === 0 ? 'text-neutral-content' : 'text-primary';
 }
 </script>
