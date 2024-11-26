@@ -6,21 +6,28 @@ from . import models
 class EquipmentSerializer(serializers.ModelSerializer):
     """Equipment model serializer"""
     
+    selected = serializers.SerializerMethodField()
+
     class Meta:
         model = models.Equipment
         fields = ('__all__')
 
+    def get_selected(self, obj):
+        return False
 
 class FireEngineSerializer(serializers.ModelSerializer):
     """Fire engine model serializer"""
 
     equipment_detail = EquipmentSerializer(source='equipments', many=True, read_only=True)
-    
+    selected = serializers.SerializerMethodField()
         
     class Meta:
         model = models.FireEngine
         fields = ('__all__')
-        
+    
+    def get_selected(self, obj):
+        return False
+
 
 class FireFighterSerializer(serializers.ModelSerializer):
     """Fire fighter model serializer"""
@@ -37,6 +44,7 @@ class StaffSerializer(serializers.ModelSerializer):
     firefighter_detail = FireFighterSerializer(source="firefighter", read_only=True)
     firefighter = serializers.DictField(write_only=True, default=None)
     station_name = serializers.StringRelatedField(source="station", read_only=True)
+    selected = serializers.SerializerMethodField()
 
     class Meta:
         model = models.Staff
@@ -57,6 +65,9 @@ class StaffSerializer(serializers.ModelSerializer):
 
         return staff
     
+    def get_selected(self, obj):
+        return False
+
     
 class FireStationSerializer(serializers.ModelSerializer):
     """Fire station model serializer"""
