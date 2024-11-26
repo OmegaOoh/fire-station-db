@@ -14,4 +14,6 @@ urlpatterns = [
     path("dispatch/", views.DispatchListView.as_view(), name="dispatch"),
     path("dispatch/<int:pk>/", views.DispatchDetailView.as_view(), name="dispatch"),
     path("dispatch-aggregate/", views.DispatchAggregate.as_view(), name="dispatch-aggregate"),
+    path("shift/", views.ShiftView.as_view(), name='shift-list'),
+    path("shift/<int:pk>/", views.ShiftChangeView.as_view(), name='shift-change')
 ]
