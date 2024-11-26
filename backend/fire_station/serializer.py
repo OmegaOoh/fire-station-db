@@ -92,3 +92,11 @@ class DispatchSerializer(serializers.ModelSerializer):
         ret['incident'] = instance.incident.label
         ret['station'] = instance.station.station_name
         return ret
+
+        
+class ShiftSerializer(serializers.ModelSerializer):
+    """Fire station model serializer"""
+    
+    class Meta:
+        model = models.Shift
+        fields = ('__all__')
