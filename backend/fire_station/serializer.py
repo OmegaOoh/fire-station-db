@@ -68,13 +68,21 @@ class StaffSerializer(serializers.ModelSerializer):
     def get_selected(self, obj):
         return False
 
-    
+
 class FireStationSerializer(serializers.ModelSerializer):
     """Fire station model serializer"""
-    
+
     fire_engine = FireEngineSerializer(source='fireengine_set', many=True, read_only=True)
     staff = StaffSerializer(source='staff_set', many=True, read_only=True)
 
     class Meta:
         model = models.Station
+        fields = ('__all__')
+
+
+class DispatchSerializer(serializers.ModelSerializer):
+    """Dispatch model serializer"""
+
+    class Meta:
+        model = models.Dispatch
         fields = ('__all__')

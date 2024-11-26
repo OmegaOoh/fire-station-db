@@ -11,4 +11,7 @@ urlpatterns = [
     path("choice/", get_choice, name="station-list"),
     path("equipments/", views.EquipmentsView.as_view(), name="equipments"),
     path("fire-engine/", views.FireEngineView.as_view(), name="fire-engine"),
+    path("dispatch/", views.DispatchListView.as_view(), name="dispatch"),
+    path("dispatch/<int:pk>/", views.DispatchDetailView.as_view(), name="dispatch"),
+    path("dispatch-aggregate/", views.DispatchAggregate.as_view(), name="dispatch-aggregate"),
 ]
