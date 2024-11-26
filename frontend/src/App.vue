@@ -7,6 +7,7 @@
     <li><RouterLink to="/find"> Record Finder </RouterLink></li>
     <li><RouterLink to="/station"> Station </RouterLink></li>
     <li><RouterLink to="/staff"> Staff List </RouterLink></li>
+    <li><RouterLink to="/shift"> ShiftManager </RouterLink></li>
   </ul>
 </div>
   </div>
