@@ -100,3 +100,8 @@ class ShiftSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Shift
         fields = ('__all__')
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        ret['day'] = instance.day.label
+        return ret

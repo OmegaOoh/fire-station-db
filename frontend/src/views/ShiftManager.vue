@@ -23,7 +23,7 @@
                         required
                     >
                         <option disabled value="">Select a day</option>
-                        <option v-for="day in days" :key="day" :value="day">{{ day }}</option>
+                        <option v-for="day in days" :key="day" :value="day.value">{{ day.label }}</option>
                     </select>
                 </div>
                 <div>
@@ -31,7 +31,7 @@
                     <input 
                         type="time" 
                         id="startTime" 
-                        v-model="newShift.startTime" 
+                        v-model="newShift.shift_start" 
                         class="input input-bordered" 
                         required
                     />
@@ -41,7 +41,7 @@
                     <input 
                         type="time" 
                         id="endTime" 
-                        v-model="newShift.endTime" 
+                        v-model="newShift.shift_end" 
                         class="input input-bordered" 
                         required
                     />
@@ -63,11 +63,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="shift in filteredShifts" :key="shift.id">
+                <tr v-for="shift in shifts" :key="shift.id">
                     <td>{{ shift.id }}</td>
                     <td>{{ shift.day }}</td>
-                    <td>{{ formatTime(shift.startTime) }}</td>
-                    <td>{{ formatTime(shift.endTime) }}</td>
+                    <td>{{ formatTime(shift.shift_start) }}</td>
+                    <td>{{ formatTime(shift.shift_end) }}</td>
                     <td>
                         <button @click="removeShift(shift.id)" class="btn btn-danger btn-sm">Remove</button>
                     </td>
@@ -78,32 +78,18 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import apiClient from '@/api';
+import { ref, onMounted } from 'vue';
 
-const shifts = ref([
-    { id: 1, day: 'Monday', startTime: '09:00', endTime: '17:00' },
-    { id: 2, day: 'Tuesday', startTime: '10:00', endTime: '18:00' },
-    { id: 3, day: 'Wednesday', startTime: '08:00', endTime: '16:00' },
-    // Add more shifts as needed
-]);
+const shifts = ref([]);
 
 const search = ref('');
 const newShift = ref({
     day: '',
-    startTime: '',
-    endTime: ''
+    shift_start: '',
+    shift_end: ''
 });
-
-// Array of days of the week
-const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
-const filteredShifts = computed(() => {
-    return shifts.value.filter(shift => {
-        return (
-            shift.day.toLowerCase().includes(search.value.toLowerCase())
-        );
-    });
-});
+const days = ref([])
 
 const formatTime = (time) => {
     const [hour, minute] = time.split(':');
@@ -112,22 +98,41 @@ const formatTime = (time) => {
     return `${formattedHour}:${minute} ${period}`;
 };
 
-const createShift = () => {
-    const newId = shifts.value.length ? shifts.value[shifts.value.length - 1].id + 1 : 1; // Generate new ID
-    shifts.value.push({
-        id: newId,
-        day: newShift.value.day,
-        startTime: newShift.value.startTime,
-        endTime: newShift.value.endTime
-    });
-
+const createShift = async () => {
+    // const newId = shifts.value.length ? shifts.value[shifts.value.length - 1].id + 1 : 1; // Generate new ID
+    // shifts.value.push({
+    //     id: newId,
+    //     day: newShift.value.day,
+    //     startTime: newShift.value.startTime,
+    //     endTime: newShift.value.endTime
+    // });
+    await apiClient.post(`/fire-station/shift/`, newShift.value)
+    fetchdata()
     // Reset the form
     newShift.value.day = '';
-    newShift.value.startTime = '';
-    newShift.value.endTime = '';
+    newShift.value.start_time = '';
+    newShift.value.end_time = '';
 };
 
-const removeShift = (id) => {
-    shifts.value = shifts.value.filter(shift => shift.id !== id);
+const removeShift = async (id) => {
+    await apiClient.delete(`/fire-station/shift/${id}/`)
+    fetchdata()
 };
+
+const fetchdata = async () => {
+    const shift_res = await apiClient.get(`/fire-station/shift/`)
+    shifts.value = shift_res.data
+}
+
+const fetchChoice = async () => {
+    const choice_res = await apiClient.get(`/fire-station/choice/`)
+    days.value = choice_res.data.day_of_week
+}
+
+onMounted(
+    () => {
+        fetchChoice()
+        fetchdata()
+    }
+)
 </script>

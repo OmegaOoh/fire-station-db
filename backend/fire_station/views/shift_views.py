@@ -1,8 +1,8 @@
 from typing import Any
 from rest_framework import response, generics, mixins
 from django.http import HttpRequest
-from .serializers import ShiftSerializer
-from .models import Shift
+from ..serializer import ShiftSerializer
+from ..models import Shift
 
 #Handle showing list
 class ShiftView(
