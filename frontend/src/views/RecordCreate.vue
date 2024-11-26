@@ -142,34 +142,6 @@ const getAvailableTool = () => {
 
 const avaiquipment = computed(getAvailableTool);
 
-// const choice_res = apiClient.get(`/fire-station/choice/`)
-// incidentTypes.value = choice_res.data.incident_type
-
-// const station_res = await apiClient.get(`/fire-station/`)
-// stations.value = station_res.data
-
-// const fireEngines = ref([
-//     { id: 1, engine_number: '103', selected: false },
-//     { id: 2, engine_number: '102', selected: false },
-//     { id: 3, engine_number: '306', selected: false }
-// ]);
-
-// const equipmentList = ref([
-//     { id: 1, name: 'Hoses', selected: false },
-//     { id: 2, name: 'Ladders', selected: false },
-//     { id: 3, name: 'Fire Extinguishers', selected: false }
-// ]);
-
-// const fireFighters = ref([
-//     { id: 1, name: 'John Doe', selected: false },
-//     { id: 2, name: 'Jane Smith', selected: false },
-//     { id: 3, name: 'Emily Johnson', selected: false },
-//     { id: 4, name: 'Harper Dope', selected: false },
-//     { id: 5, name: 'Abby Swan', selected: false },
-//     { id: 6, name: 'Top Ten', selected: false },
-//     { id: 7, name: 'Jame Samson', selected: false },
-// ]);
-
 const submitDispatch = () => {
 
     console.log(selectedStation.value)
