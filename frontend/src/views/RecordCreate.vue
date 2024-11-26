@@ -18,7 +18,34 @@
                 <label class="label">
                     <span class="label-text">Address</span>
                 </label>
-                <input type="text" v-model="dispatch.address" class="input input-bordered w-full" placeholder="Enter address" required />
+                <input type="text" v-model="dispatch.address" class="input input-bordered w-full" placeholder="Enter address" required />    
+            </div>
+
+            <div class="form-control w-full">
+                <label>Reported Time</label>
+                <input 
+                    type="datetime-local" 
+                    v-model="dispatch.reported_time" 
+                    class="input input-bordered w-full mb-2" 
+                />
+            </div>
+
+            <div class="form-control w-full">
+                <label>Notified Time</label>
+                <input 
+                    type="datetime-local" 
+                    v-model="dispatch.notified_time" 
+                    class="input input-bordered w-full mb-2" 
+                />
+            </div>
+
+            <div class="form-control w-full">
+                <label>Resolve Time</label>
+                <input 
+                    type="datetime-local" 
+                    v-model="dispatch.resolved_time" 
+                    class="input input-bordered w-full mb-2" 
+                />  
             </div>
 
             <div class="mb-4">
@@ -81,14 +108,19 @@ import apiClient from '@/api';
 import { ref, computed } from 'vue';
 import { onMounted } from 'vue'
 
+// const date = new Date()
 const dispatch = ref({
     incident: '',
     address: '',
     station: '',
-    fireEngines: [],
-    equipmentUsed: [],
-    fireFighters: [],
+    reported_time: '',
+    notified_time: '',
+    resolved_time: '',
+    fire_engine: [],
+    equipment_used: [],
+    fire_fighter: [],
 });
+
 const selectedStation = ref({
         staff: [],
         fire_engine: []
@@ -141,7 +173,7 @@ const avaiquipment = computed(getAvailableTool);
 const submitDispatch = () => {
 
     console.log(selectedStation.value)
-    dispatch.value.fireFighters = selectedStation.value.staff.filter(fighter => fighter.selected).map(fighter => fighter.id);
+    dispatch.value.fire_fighter = selectedStation.value.staff.filter(fighter => fighter.selected).map(fighter => fighter.firefighter_detail.id);
 
     const selectedEn = []
     for (let engine of selectedStation.value.fire_engine) {
@@ -149,15 +181,11 @@ const submitDispatch = () => {
             selectedEn.push(engine.id)
         }
     }
-    dispatch.value.fireEngines = selectedEn
-    dispatch.value.equipmentUsed = avaiquipment.value.filter(equip => equip.selected).map(equip => equip.id)
+    dispatch.value.station = selectedStation.value.id
+    dispatch.value.fire_engine = selectedEn
+    dispatch.value.equipment_used = avaiquipment.value.filter(equip => equip.selected).map(equip => equip.id)
     console.log(dispatch.value)
-    // console.log(dispatch.value)
-
-    // dispatch.value.fireEngines = fireEngines.value.filter(engine => engine.selected);
-    // dispatch.value.equipmentUsed = equipmentList.value.filter(equipment => equipment.selected);
-    // dispatch.value.fireFighters = fireFighters.value.filter(fighter => fighter.selected);
-    // console.log('Dispatch created:', dispatch.value);
+    apiClient.post(`/fire-station/dispatch/`, dispatch.value)
 };
 
 const fetchdata = async () => {
