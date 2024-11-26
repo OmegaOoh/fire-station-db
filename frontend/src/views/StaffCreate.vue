@@ -49,8 +49,8 @@
                 </div>
                 <div class="ml-4 grid grid-cols-2">
                     <div v-for="(shift, index) in choices.shift" :key="index" class="flex items-center mb-2">
-                        <input type="checkbox" :id="'shift-' + index" v-model="selectedShifts" :value="shift" class="checkbox" />
-                        <label :for="'shift-' + index" class="ml-2">{{ shift }}</label>
+                        <input type="checkbox" :id="'shift-' + index" v-model="selectedShifts" :value="shift.id" class="checkbox" />
+                        <label :for="'shift-' + index" class="ml-2">{{ shift.day }} {{ shift.shift_start.slice(0, 5) }} - {{ shift.shift_end.slice(0, 5) }}</label>
                     </div>
                 </div>
             </div>
@@ -123,15 +123,8 @@ const fetchAvailableChoice = async () => {
     choices.value.FireFighterRole = choice_res.data.fire_fighter_role
     choices.value.FireFighterRank = choice_res.data.fire_fighter_rank
     choices.value.gender = choice_res.data.gender
-
-    choices.value.shift = [
-        'Mon 09:00 - 16:00',
-        'Tue 09:00 - 16:00',
-        'Wed 09:00 - 16:00',
-        'Thu 09:00 - 16:00',
-        'Sat 09:00 - 16:00',
-        'Sun 09:00 - 16:00',
-    ];
+    const shift_res = await apiClient.get(`/fire-station/shift/`)
+    choices.value.shift = shift_res.data
 
     const station_res = await apiClient.get(`/fire-station/`)
     choices.value.station = station_res.data
@@ -150,9 +143,8 @@ const submitData = async() => {
         gender: gender.value,
         position: position.value,
         station: station.value,
-        shifts: selectedShifts.value,
-    }
-    
+        shift: selectedShifts.value,
+    }    
     if (isFireFighter.value) {
         const firefighter = {
             role: fireFighterRole.value,
@@ -168,7 +160,6 @@ const submitData = async() => {
         console.error('Submission failed:', error);
     }
     
-    console.log(data);
 }
 
 onMounted(() => {

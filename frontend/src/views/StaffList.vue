@@ -39,8 +39,8 @@
                     <ul class="col-span-2 grid grid-cols-1 md:grid-cols-6"><strong class="col-span-6">
                         Shifts:
                     </strong>
-                        <li v-for="(shift, index) in staffData.shift" :key="index">
-                            {{ shift.day }} {{ shift.shift_start }} - {{ shift.shift_end }}
+                        <li v-for="(shift, index) in staffData.shift_detail" :key="index">
+                            {{ shift.day }} {{ shift.shift_start.slice(0, 5) }} - {{ shift.shift_end.slice(0, 5) }}
                         </li>
                     </ul>
                     <div></div>

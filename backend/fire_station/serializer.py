@@ -37,6 +37,38 @@ class FireFighterSerializer(serializers.ModelSerializer):
         fields = ('__all__')
 
 
+class DispatchSerializer(serializers.ModelSerializer):
+    """Dispatch model serializer"""
+
+    class Meta:
+        model = models.Dispatch
+        fields = ('__all__')
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        ret['incident'] = instance.incident.label
+        ret['station'] = instance.station.station_name
+        return ret
+
+        
+class ShiftSerializer(serializers.ModelSerializer):
+    """Fire station model serializer"""
+    
+    removeable = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = models.Shift
+        fields = ('__all__')
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        ret['day'] = instance.day.label
+        return ret
+    
+    def get_removeable(self, obj):
+        return False if len(obj.staff_set.all()) > 0 else True
+    
+
 class StaffSerializer(serializers.ModelSerializer):
     """Staff model serializer"""
 
@@ -44,6 +76,7 @@ class StaffSerializer(serializers.ModelSerializer):
     firefighter_detail = FireFighterSerializer(source="firefighter", read_only=True)
     firefighter = serializers.DictField(write_only=True, default=None)
     station_name = serializers.StringRelatedField(source="station", read_only=True)
+    shift_detail = ShiftSerializer(source='shift', read_only=True, many=True)
     selected = serializers.SerializerMethodField()
 
     class Meta:
@@ -78,30 +111,3 @@ class FireStationSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Station
         fields = ('__all__')
-
-
-class DispatchSerializer(serializers.ModelSerializer):
-    """Dispatch model serializer"""
-
-    class Meta:
-        model = models.Dispatch
-        fields = ('__all__')
-
-    def to_representation(self, instance):
-        ret = super().to_representation(instance)
-        ret['incident'] = instance.incident.label
-        ret['station'] = instance.station.station_name
-        return ret
-
-        
-class ShiftSerializer(serializers.ModelSerializer):
-    """Fire station model serializer"""
-    
-    class Meta:
-        model = models.Shift
-        fields = ('__all__')
-
-    def to_representation(self, instance):
-        ret = super().to_representation(instance)
-        ret['day'] = instance.day.label
-        return ret

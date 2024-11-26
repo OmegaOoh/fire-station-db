@@ -69,7 +69,7 @@
                     <td>{{ formatTime(shift.shift_start) }}</td>
                     <td>{{ formatTime(shift.shift_end) }}</td>
                     <td>
-                        <button @click="removeShift(shift.id)" class="btn btn-danger btn-sm">Remove</button>
+                        <button v-if="shift.removeable" @click="removeShift(shift.id)" class="btn btn-danger btn-sm">Remove</button>
                     </td>
                 </tr>
             </tbody>
@@ -99,13 +99,6 @@ const formatTime = (time) => {
 };
 
 const createShift = async () => {
-    // const newId = shifts.value.length ? shifts.value[shifts.value.length - 1].id + 1 : 1; // Generate new ID
-    // shifts.value.push({
-    //     id: newId,
-    //     day: newShift.value.day,
-    //     startTime: newShift.value.startTime,
-    //     endTime: newShift.value.endTime
-    // });
     await apiClient.post(`/fire-station/shift/`, newShift.value)
     fetchdata()
     // Reset the form
