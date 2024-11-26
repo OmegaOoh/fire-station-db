@@ -86,3 +86,9 @@ class DispatchSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Dispatch
         fields = ('__all__')
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        ret['incident'] = instance.incident.label
+        ret['station'] = instance.station.station_name
+        return ret

@@ -77,7 +77,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import apiClient from '@/api.js'
 
@@ -94,12 +94,7 @@ const dispatch = ref({
 const incidentTypes = ref([])
 const stations = ref([])
 
-// Placeholder data
-const choice_res = apiClient.get(`/fire-station/choices/`)
-incidentTypes.value = choice_res.data.incident_type
 
-const station_res = await apiClient.get(`/fire-station/`)
-stations.value = station_res.data
 
 const fireEngines = ref([
     { id: 1, engine_number: '103', selected: false },
@@ -129,4 +124,18 @@ const submitDispatch = () => {
     dispatch.value.fireFighters = fireFighters.value.filter(fighter => fighter.selected);
     console.log('Dispatch created:', dispatch.value);
 };
+
+const fetchdata = async () => {
+    // Placeholder data
+    const choice_res = await apiClient.get(`/fire-station/choice/`)
+    incidentTypes.value = choice_res.data.incident_type
+
+    const station_res = await apiClient.get(`/fire-station/`)
+    stations.value = station_res.data
+
+}
+
+onMounted(
+    fetchdata()
+)
 </script>

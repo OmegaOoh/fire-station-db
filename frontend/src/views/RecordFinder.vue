@@ -43,7 +43,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import apiClient from '@/api';
+import { ref, computed, onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
 
 //const router = useRouter();
@@ -71,4 +72,15 @@ const formatDate = (date) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(date).toLocaleDateString(undefined, options);
 };
+
+const fetchdata = async() => {
+    const res = await apiClient.get(`/fire-station/dispatch/`)
+    dispatches.value = res.data
+}
+
+onMounted(
+    () => {
+        fetchdata()
+    }
+)
 </script>
