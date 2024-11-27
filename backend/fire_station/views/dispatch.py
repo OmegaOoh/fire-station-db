@@ -1,7 +1,7 @@
 """Module for handle dispatch."""
 from typing import Any
 from django.http import HttpRequest
-from django.db.models import QuerySet, Count, Avg, F
+from django.db.models import QuerySet, Count, Avg, F, ExpressionWrapper, FloatField
 from rest_framework import generics, mixins, response, status
 from fire_station import models, serializer
 from django.utils import dateparse
@@ -87,8 +87,21 @@ class DispatchAggregate(
 
         months = self.request.query_params.get("months")
         if months:
+            print(type(months))
             parse_months = months.split(",")
             queryset = queryset.filter(reported_time__month__in=parse_months)
+        
+        station = self.request.query_params.get("station")
+        if station:
+            print(type(station))
+            parse_station = station.split(",")
+            queryset = queryset.filter(station__in=parse_station)
+        
+        incident = self.request.query_params.get("incident")
+        if incident:
+            print(type(incident))
+            parse_incident = incident.split(",")
+            queryset = queryset.filter(incident__in=parse_incident)
 
         # 2023-03-15T14:30 example format
         try:
@@ -117,10 +130,15 @@ class DispatchAggregate(
 
         # Dispatch assignments group by "group_by" query param
         if group_by:
-            aggregate_data = queryset.values(group_by).annotate(average_time_resolved=Avg(F('notified_time') - F('resolved_time')), number_of_dispatches=Count('id'))
+            total_dispatch = len(queryset)
+            aggregate_data = queryset.values(group_by).annotate(
+                average_time_resolved=Avg(F('resolved_time') - F('reported_time')),
+                number_of_dispatches=Count('id'), 
+                dispatch_percentage=Count('id') / float(total_dispatch) * 100
+            ).order_by('number_of_dispatches')
 
         # All dispatch assignments
         else:
-            aggregate_data = queryset.aggregate(average_time_resolved=Avg(F('notified_time') - F('resolved_time')), number_of_dispatches=Count('id'))
+            aggregate_data = queryset.aggregate(average_time_resolved=Avg(F('resolved_time') - F('reported_time')), number_of_dispatches=Count('id'))
 
         return response.Response(aggregate_data, status=status.HTTP_200_OK)
