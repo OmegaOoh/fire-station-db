@@ -107,8 +107,10 @@
 import apiClient from '@/api';
 import { ref, computed } from 'vue';
 import { onMounted } from 'vue'
+import { useRouter } from 'vue-router';
 
-// const date = new Date()
+const router = useRouter()
+
 const dispatch = ref({
     incident: '',
     address: '',
@@ -142,7 +144,7 @@ const getAvailableTool = () => {
 
 const avaiquipment = computed(getAvailableTool);
 
-const submitDispatch = () => {
+const submitDispatch = async () => {
 
     console.log(selectedStation.value)
     dispatch.value.fire_fighter = selectedStation.value.staff.filter(fighter => fighter.selected).map(fighter => fighter.firefighter_detail.id);
@@ -164,7 +166,9 @@ const submitDispatch = () => {
     ) {
         return
     }
-    apiClient.post(`/fire-station/dispatch/`, dispatch.value)
+    await apiClient.post(`/fire-station/dispatch/`, dispatch.value)
+    router.push(`/find`)
+
 };
 
 const fetchdata = async () => {

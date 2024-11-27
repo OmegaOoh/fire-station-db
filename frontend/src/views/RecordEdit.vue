@@ -107,8 +107,9 @@
 import apiClient from '@/api';
 import { ref, computed } from 'vue';
 import { onMounted } from 'vue'
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
+const router = useRouter();
 const route = useRoute();
 const dispatch = ref({
     id: '',
@@ -144,7 +145,7 @@ const getAvailableTool = () => {
 
 const avaiquipment = computed(getAvailableTool);
 
-const submitDispatch = () => {
+const submitDispatch = async () => {
 
     console.log(selectedStation.value)
     dispatch.value.fire_fighter = selectedStation.value.staff.filter(fighter => fighter.selected).map(fighter => fighter.firefighter_detail.id);
@@ -168,7 +169,8 @@ const submitDispatch = () => {
         return
     }
 
-    apiClient.put(`/fire-station/dispatch/${route.params.id}/`, dispatch.value)
+    await apiClient.put(`/fire-station/dispatch/${route.params.id}/`, dispatch.value)
+    router.push(`/find`)
 };
 
 const fetchdata = async () => {
