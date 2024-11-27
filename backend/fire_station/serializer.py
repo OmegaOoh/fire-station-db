@@ -58,7 +58,7 @@ class ShiftSerializer(serializers.ModelSerializer):
 class StaffSerializer(serializers.ModelSerializer):
     """Staff model serializer"""
 
-    is_fire_fighter = serializers.BooleanField(required=False)
+    is_fire_fighter = serializers.BooleanField(required=False, read_only=True)
     firefighter_detail = FireFighterSerializer(source="firefighter", read_only=True)
     firefighter = serializers.DictField(write_only=True, default=None)
     station_name = serializers.StringRelatedField(source="station", read_only=True)
@@ -73,7 +73,6 @@ class StaffSerializer(serializers.ModelSerializer):
 
         ff = validated_data.pop('firefighter', None)
         print(validated_data)
-        print(ff)
         staff = super().create(validated_data)
 
         if ff:

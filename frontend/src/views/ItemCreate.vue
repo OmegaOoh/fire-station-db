@@ -3,7 +3,7 @@
         <h1 class="text-4xl font-bold mb-6">{{station.station_name}}: Equipment and Fire Engines Management</h1>
 
         <!-- Equipment Section -->
-        <div class="mb-8 max-h-[50vh]">
+        <div class="mb-8">
             <h2 class="text-2xl font-semibold mb-4">Equipment</h2>
             <input 
                 type="text" 
@@ -20,7 +20,7 @@
 
             <div class="mt-4">
                 <h3 class="text-xl font-semibold">Equipment List</h3>
-                <ul class="list-disc pl-5 grid grid-cols-2">
+                <ul class="list-disc pl-5 grid grid-cols-2 max-h-[25vh] overflow-y-auto">
                     <li v-for="equipment in equipments" :key="equipment.id" class="mt-2 grid grid-cols-2">
                         {{ equipment.item_name }} ({{ formatDate(equipment.issue_date) }})
                         <button @click="removeEquipment(equipment.id)" class="btn btn-error btn-sm w-fit">Remove</button>
@@ -30,7 +30,7 @@
         </div>
 
         <!-- Fire Engines Section -->
-        <div class="max-h-[50vh]">
+        <div>
             <h2 class="text-2xl font-semibold mb-4">Fire Engines</h2>
             <input 
                 type="number" 
