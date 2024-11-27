@@ -25,7 +25,7 @@
             <div class="collapse collapse-arrow bg-base-300 mb-4">
                 <input type="radio" name="my-accordion-2" checked="checked" />
                 <div class="collapse-title text-xl font-medium">{{ staffData.full_name }}, {{ staffData.station_name }}
-                    <div class="badge badge-secondary" v-if="staffData.fire_fighter_rank">Fire Fighter</div>
+                    <div class="badge badge-secondary" v-if="staffData.is_fire_fighter">Fire Fighter</div>
                 </div>
                 <div class="collapse-content grid grid-cols-1 md:grid-cols-2">
                     <p><strong>Date of Birth:</strong> {{ staffData.dob }}</p>
@@ -78,7 +78,7 @@ const filteredStaff = computed(() => {
             let matched = staff.full_name.toLowerCase().includes(search.value.toLowerCase()) ||
                 staff.position.toLowerCase().includes(search.value.toLowerCase()) ||
                 staff.station.toLowerCase().includes(search.value.toLowerCase())
-            if (staff.fire_fighter_rank && staff.fire_fighter_role) {
+            if (staff.is_fire_fighter) {
                 matched = matched ||
                         staff.fire_fighter_rank.toLowerCase().includes(search.value.toLowerCase()) ||
                         staff.fire_fighter_role.toLowerCase().includes(search.value.toLowerCase())
