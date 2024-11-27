@@ -1,0 +1,1495 @@
+[
+{
+  "model": "fire_station.station",
+  "pk": 1,
+  "fields": {
+    "station_name": "KU station",
+    "address": "Kasertsart University",
+    "staff_capacity": 30,
+    "fire_engine_capacity": 5
+  }
+},
+{
+  "model": "fire_station.station",
+  "pk": 2,
+  "fields": {
+    "station_name": "Central Fire Station",
+    "address": "123 Main St, Springfield",
+    "staff_capacity": 20,
+    "fire_engine_capacity": 5
+  }
+},
+{
+  "model": "fire_station.station",
+  "pk": 3,
+  "fields": {
+    "station_name": "Eastside Fire Station",
+    "address": "456 Elm St, Springfield",
+    "staff_capacity": 15,
+    "fire_engine_capacity": 3
+  }
+},
+{
+  "model": "fire_station.station",
+  "pk": 4,
+  "fields": {
+    "station_name": "West End Fire Station",
+    "address": "789 Maple Ave, Springfield",
+    "staff_capacity": 25,
+    "fire_engine_capacity": 6
+  }
+},
+{
+  "model": "fire_station.station",
+  "pk": 5,
+  "fields": {
+    "station_name": "Northview Fire Station",
+    "address": "321 Oak St, Springfield",
+    "staff_capacity": 18,
+    "fire_engine_capacity": 4
+  }
+},
+{
+  "model": "fire_station.station",
+  "pk": 6,
+  "fields": {
+    "station_name": "Southtown Fire Station",
+    "address": "654 Pine St, Springfield",
+    "staff_capacity": 12,
+    "fire_engine_capacity": 2
+  }
+},
+{
+  "model": "fire_station.station",
+  "pk": 7,
+  "fields": {
+    "station_name": "Riverbend Fire Station",
+    "address": "987 River Rd, Springfield",
+    "staff_capacity": 22,
+    "fire_engine_capacity": 5
+  }
+},
+{
+  "model": "fire_station.station",
+  "pk": 8,
+  "fields": {
+    "station_name": "Hilltop Fire Station",
+    "address": "135 Hilltop Blvd, Springfield",
+    "staff_capacity": 10,
+    "fire_engine_capacity": 2
+  }
+},
+{
+  "model": "fire_station.station",
+  "pk": 9,
+  "fields": {
+    "station_name": "Lakeside Fire Station",
+    "address": "246 Lakeside Dr, Springfield",
+    "staff_capacity": 30,
+    "fire_engine_capacity": 7
+  }
+},
+{
+  "model": "fire_station.station",
+  "pk": 10,
+  "fields": {
+    "station_name": "Downtown Fire Station",
+    "address": "369 Downtown St, Springfield",
+    "staff_capacity": 28,
+    "fire_engine_capacity": 6
+  }
+},
+{
+  "model": "fire_station.station",
+  "pk": 11,
+  "fields": {
+    "station_name": "Mountain View Fire Station",
+    "address": "159 Mountain View Rd, Springfield",
+    "staff_capacity": 16,
+    "fire_engine_capacity": 3
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 2,
+  "fields": {
+    "shift_start": "08:00:00",
+    "shift_end": "16:00:00",
+    "day": 1
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 3,
+  "fields": {
+    "shift_start": "16:00:00",
+    "shift_end": "00:00:00",
+    "day": 1
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 4,
+  "fields": {
+    "shift_start": "00:00:00",
+    "shift_end": "08:00:00",
+    "day": 1
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 5,
+  "fields": {
+    "shift_start": "08:00:00",
+    "shift_end": "16:00:00",
+    "day": 2
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 6,
+  "fields": {
+    "shift_start": "16:00:00",
+    "shift_end": "00:00:00",
+    "day": 2
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 7,
+  "fields": {
+    "shift_start": "00:00:00",
+    "shift_end": "08:00:00",
+    "day": 2
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 8,
+  "fields": {
+    "shift_start": "08:00:00",
+    "shift_end": "16:00:00",
+    "day": 3
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 9,
+  "fields": {
+    "shift_start": "16:00:00",
+    "shift_end": "00:00:00",
+    "day": 3
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 10,
+  "fields": {
+    "shift_start": "00:00:00",
+    "shift_end": "08:00:00",
+    "day": 3
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 11,
+  "fields": {
+    "shift_start": "08:00:00",
+    "shift_end": "16:00:00",
+    "day": 4
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 12,
+  "fields": {
+    "shift_start": "16:00:00",
+    "shift_end": "00:00:00",
+    "day": 4
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 13,
+  "fields": {
+    "shift_start": "00:00:00",
+    "shift_end": "08:00:00",
+    "day": 4
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 14,
+  "fields": {
+    "shift_start": "08:00:00",
+    "shift_end": "16:00:00",
+    "day": 5
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 15,
+  "fields": {
+    "shift_start": "16:00:00",
+    "shift_end": "00:00:00",
+    "day": 5
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 16,
+  "fields": {
+    "shift_start": "00:00:00",
+    "shift_end": "08:00:00",
+    "day": 5
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 17,
+  "fields": {
+    "shift_start": "08:00:00",
+    "shift_end": "16:00:00",
+    "day": 6
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 18,
+  "fields": {
+    "shift_start": "16:00:00",
+    "shift_end": "00:00:00",
+    "day": 6
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 19,
+  "fields": {
+    "shift_start": "00:00:00",
+    "shift_end": "08:00:00",
+    "day": 6
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 20,
+  "fields": {
+    "shift_start": "08:00:00",
+    "shift_end": "16:00:00",
+    "day": 7
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 21,
+  "fields": {
+    "shift_start": "16:00:00",
+    "shift_end": "00:00:00",
+    "day": 7
+  }
+},
+{
+  "model": "fire_station.shift",
+  "pk": 22,
+  "fields": {
+    "shift_start": "00:00:00",
+    "shift_end": "08:00:00",
+    "day": 7
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 1,
+  "fields": {
+    "full_name": "Pasu S.",
+    "dob": "2005-01-07",
+    "gender": "Male",
+    "position": "Inthe middle",
+    "station": 1,
+    "shift": [
+      10,
+      11,
+      12,
+      21
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 2,
+  "fields": {
+    "full_name": "John Doe",
+    "dob": "1990-10-10",
+    "gender": "Male",
+    "position": "in the middle",
+    "station": 6,
+    "shift": [
+      2,
+      13
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 3,
+  "fields": {
+    "full_name": "Michael Davis",
+    "dob": "1992-04-10",
+    "gender": "Male",
+    "position": "Chief of Operations",
+    "station": 1,
+    "shift": [
+      5,
+      19
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 4,
+  "fields": {
+    "full_name": "Michael Davis",
+    "dob": "1992-04-10",
+    "gender": "Male",
+    "position": "Chief of Operations",
+    "station": 1,
+    "shift": [
+      5,
+      19
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 5,
+  "fields": {
+    "full_name": "Sarah Thompson",
+    "dob": "1984-08-22",
+    "gender": "Female",
+    "position": "Training Coordinator",
+    "station": 1,
+    "shift": [
+      4,
+      18,
+      20
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 6,
+  "fields": {
+    "full_name": "Jane Smith",
+    "dob": "1990-09-21",
+    "gender": "Female",
+    "position": "Fire Safety Officer",
+    "station": 2,
+    "shift": [
+      4,
+      21
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 7,
+  "fields": {
+    "full_name": "John Doe",
+    "dob": "1985-06-15",
+    "gender": "Male",
+    "position": "Station Manager",
+    "station": 3,
+    "shift": [
+      6,
+      12,
+      15,
+      19
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 8,
+  "fields": {
+    "full_name": "Liam Green",
+    "dob": "1993-01-12",
+    "gender": "Male",
+    "position": "Logistics Officer",
+    "station": 3,
+    "shift": [
+      13,
+      16,
+      18
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 9,
+  "fields": {
+    "full_name": "Chris Johnson",
+    "dob": "1988-11-02",
+    "gender": "Male",
+    "position": "Operations Supervisor",
+    "station": 5,
+    "shift": [
+      5,
+      15
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 10,
+  "fields": {
+    "full_name": "Emma Adams",
+    "dob": "1991-07-09",
+    "gender": "Female",
+    "position": "Fire Safety Officer",
+    "station": 5,
+    "shift": [
+      11,
+      20,
+      22
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 11,
+  "fields": {
+    "full_name": "Mary Williams",
+    "dob": "1982-02-18",
+    "gender": "Female",
+    "position": "Training Coordinator",
+    "station": 4,
+    "shift": [
+      8
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 12,
+  "fields": {
+    "full_name": "Alex Taylor",
+    "dob": "1995-03-30",
+    "gender": "Other",
+    "position": "Logistics Officer",
+    "station": 6,
+    "shift": [
+      11,
+      13
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 13,
+  "fields": {
+    "full_name": "Grace White",
+    "dob": "1987-12-02",
+    "gender": "Female",
+    "position": "Community Outreach Coordinator",
+    "station": 6,
+    "shift": [
+      6,
+      13,
+      19
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 14,
+  "fields": {
+    "full_name": "Emily Brown",
+    "dob": "1987-07-22",
+    "gender": "Female",
+    "position": "Administrative Assistant",
+    "station": 7,
+    "shift": [
+      8,
+      11,
+      17
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 15,
+  "fields": {
+    "full_name": "David Clark",
+    "dob": "1980-05-17",
+    "gender": "Male",
+    "position": "Public Relations Officer",
+    "station": 8,
+    "shift": [
+      5,
+      7
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 16,
+  "fields": {
+    "full_name": "Olivia Martinez",
+    "dob": "1989-01-28",
+    "gender": "Female",
+    "position": "Community Outreach Coordinator",
+    "station": 9,
+    "shift": [
+      6,
+      9,
+      15,
+      19,
+      20
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 17,
+  "fields": {
+    "full_name": "Sophia Lee",
+    "dob": "1993-12-05",
+    "gender": "Female",
+    "position": "Health and Safety Officer",
+    "station": 10,
+    "shift": [
+      7,
+      19,
+      21
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 18,
+  "fields": {
+    "full_name": "William Harris",
+    "dob": "1996-10-14",
+    "gender": "Male",
+    "position": "Maintenance Supervisor",
+    "station": 11,
+    "shift": [
+      11,
+      15
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 19,
+  "fields": {
+    "full_name": "Sophia Turner",
+    "dob": "1990-06-30",
+    "gender": "Female",
+    "position": "Logistics Officer",
+    "station": 11,
+    "shift": [
+      13,
+      16,
+      17
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 20,
+  "fields": {
+    "full_name": "John Miller",
+    "dob": "1992-05-11",
+    "gender": "Male",
+    "position": "Operations Supervisor",
+    "station": 1,
+    "shift": [
+      9,
+      19
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 21,
+  "fields": {
+    "full_name": "Laura Carter",
+    "dob": "1983-02-03",
+    "gender": "Female",
+    "position": "Community Outreach Coordinator",
+    "station": 3,
+    "shift": [
+      9
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 22,
+  "fields": {
+    "full_name": "Daniel Lee",
+    "dob": "1994-11-18",
+    "gender": "Male",
+    "position": "Public Relations Officer",
+    "station": 7,
+    "shift": [
+      3,
+      9,
+      19
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 23,
+  "fields": {
+    "full_name": "Rachel Scott",
+    "dob": "1985-07-26",
+    "gender": "Female",
+    "position": "Fire Safety Officer",
+    "station": 9,
+    "shift": [
+      4,
+      6,
+      12,
+      15
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 103,
+  "fields": {
+    "full_name": "Jason Brooks",
+    "dob": "1990-01-15",
+    "gender": "Male",
+    "position": "Fire Fighter",
+    "station": 1,
+    "shift": [
+      4,
+      10
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 104,
+  "fields": {
+    "full_name": "Jason Brooks",
+    "dob": "1990-01-15",
+    "gender": "Male",
+    "position": "Fire Fighter",
+    "station": 1,
+    "shift": [
+      4,
+      10
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 105,
+  "fields": {
+    "full_name": "Jason Brooks",
+    "dob": "1990-01-15",
+    "gender": "Male",
+    "position": "Fire Fighter",
+    "station": 1,
+    "shift": [
+      7,
+      13,
+      17
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 106,
+  "fields": {
+    "full_name": "Jason Brooks",
+    "dob": "1990-01-15",
+    "gender": "Male",
+    "position": "Fire Fighter",
+    "station": 1,
+    "shift": [
+      2,
+      5,
+      13
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 107,
+  "fields": {
+    "full_name": "adsfdgdvdm gbdfsdsvded",
+    "dob": "0011-11-11",
+    "gender": "Male",
+    "position": "Fire Fighter",
+    "station": 2,
+    "shift": [
+      2,
+      3,
+      7
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 108,
+  "fields": {
+    "full_name": "Good Guy",
+    "dob": "0001-11-11",
+    "gender": "Male",
+    "position": "Fire Fighter",
+    "station": 3,
+    "shift": [
+      2,
+      6,
+      11
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 109,
+  "fields": {
+    "full_name": "Sum guy",
+    "dob": "0001-11-11",
+    "gender": "Male",
+    "position": "Fire Fighter",
+    "station": 4,
+    "shift": [
+      2,
+      5,
+      11
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 110,
+  "fields": {
+    "full_name": "Sum wan",
+    "dob": "0001-11-11",
+    "gender": "Female",
+    "position": "Fire Fighter",
+    "station": 5,
+    "shift": [
+      3,
+      5,
+      11
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 111,
+  "fields": {
+    "full_name": "Ming moing",
+    "dob": "0001-11-11",
+    "gender": "Male",
+    "position": "Fire Fighter",
+    "station": 6,
+    "shift": [
+      3,
+      5,
+      18,
+      19
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 112,
+  "fields": {
+    "full_name": "yee mee",
+    "dob": "0001-11-11",
+    "gender": "Other",
+    "position": "Fire Fighter",
+    "station": 9,
+    "shift": [
+      2,
+      6,
+      11,
+      18,
+      19
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 113,
+  "fields": {
+    "full_name": "yes mam",
+    "dob": "0001-11-11",
+    "gender": "Female",
+    "position": "Fire Fighter",
+    "station": 10,
+    "shift": [
+      3,
+      10,
+      11,
+      18
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 114,
+  "fields": {
+    "full_name": "Huh wow",
+    "dob": "0001-11-11",
+    "gender": "Male",
+    "position": "Fire Fighter",
+    "station": 11,
+    "shift": [
+      4,
+      10,
+      11,
+      16,
+      21
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 115,
+  "fields": {
+    "full_name": "Jane doe",
+    "dob": "0001-11-11",
+    "gender": "Female",
+    "position": "Fire Fighter",
+    "station": 1,
+    "shift": [
+      5,
+      11,
+      21,
+      22
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 116,
+  "fields": {
+    "full_name": "Jane doing",
+    "dob": "0001-11-11",
+    "gender": "Female",
+    "position": "Fire Fighter",
+    "station": 2,
+    "shift": [
+      2,
+      6,
+      21,
+      22
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 117,
+  "fields": {
+    "full_name": "Was doing",
+    "dob": "0001-11-11",
+    "gender": "Other",
+    "position": "Fire Fighter",
+    "station": 3,
+    "shift": [
+      2,
+      5,
+      21,
+      22
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 118,
+  "fields": {
+    "full_name": "loo loo",
+    "dob": "0001-11-11",
+    "gender": "Other",
+    "position": "Fire Fighter",
+    "station": 4,
+    "shift": [
+      8,
+      13,
+      21,
+      22
+    ]
+  }
+},
+{
+  "model": "fire_station.staff",
+  "pk": 119,
+  "fields": {
+    "full_name": "yee haw",
+    "dob": "0001-11-11",
+    "gender": "Female",
+    "position": "Fire Fighter",
+    "station": 5,
+    "shift": [
+      8,
+      13,
+      21,
+      22
+    ]
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 1,
+  "fields": {
+    "staff": 1,
+    "rank": 2,
+    "role": "Hoseline Operator"
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 3,
+  "fields": {
+    "staff": 107,
+    "rank": 5,
+    "role": "Vent Technician"
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 4,
+  "fields": {
+    "staff": 108,
+    "rank": 5,
+    "role": "Hoseline Operator"
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 5,
+  "fields": {
+    "staff": 109,
+    "rank": 2,
+    "role": "Vent Technician"
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 6,
+  "fields": {
+    "staff": 110,
+    "rank": 5,
+    "role": "Incident Commander"
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 7,
+  "fields": {
+    "staff": 111,
+    "rank": 8,
+    "role": "Vent Technician"
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 8,
+  "fields": {
+    "staff": 112,
+    "rank": 4,
+    "role": "Search and Rescue"
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 9,
+  "fields": {
+    "staff": 113,
+    "rank": 3,
+    "role": "Hoseline Operator"
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 10,
+  "fields": {
+    "staff": 114,
+    "rank": 2,
+    "role": "Search and Rescue"
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 11,
+  "fields": {
+    "staff": 115,
+    "rank": 4,
+    "role": "Company Officer"
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 12,
+  "fields": {
+    "staff": 116,
+    "rank": 4,
+    "role": "Company Officer"
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 13,
+  "fields": {
+    "staff": 117,
+    "rank": 7,
+    "role": "Medic"
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 14,
+  "fields": {
+    "staff": 118,
+    "rank": 8,
+    "role": "Hoseline Operator"
+  }
+},
+{
+  "model": "fire_station.firefighter",
+  "pk": 15,
+  "fields": {
+    "staff": 119,
+    "rank": 5,
+    "role": "Incident Commander"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 1,
+  "fields": {
+    "item_name": "Axe",
+    "issue_date": "2020-10-24"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 2,
+  "fields": {
+    "item_name": "Axe",
+    "issue_date": "2020-10-24"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 3,
+  "fields": {
+    "item_name": "Hose",
+    "issue_date": "2020-10-31"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 4,
+  "fields": {
+    "item_name": "Fire Extinguisher",
+    "issue_date": "2021-01-15"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 5,
+  "fields": {
+    "item_name": "Ladder",
+    "issue_date": "2021-03-05"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 6,
+  "fields": {
+    "item_name": "Water Pump",
+    "issue_date": "2021-06-20"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 7,
+  "fields": {
+    "item_name": "Protective Gloves",
+    "issue_date": "2022-02-10"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 8,
+  "fields": {
+    "item_name": "Fire Hose Reel",
+    "issue_date": "2022-07-12"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 9,
+  "fields": {
+    "item_name": "Thermal Imaging Camera",
+    "issue_date": "2023-03-18"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 10,
+  "fields": {
+    "item_name": "Rescue Saw",
+    "issue_date": "2023-05-30"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 11,
+  "fields": {
+    "item_name": "First Aid Kit",
+    "issue_date": "2023-08-22"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 12,
+  "fields": {
+    "item_name": "Fire Blanket",
+    "issue_date": "2021-09-15"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 13,
+  "fields": {
+    "item_name": "Breathing Apparatus",
+    "issue_date": "2021-11-01"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 14,
+  "fields": {
+    "item_name": "Fire Axe",
+    "issue_date": "2022-01-20"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 15,
+  "fields": {
+    "item_name": "Hydraulic Rescue Tool",
+    "issue_date": "2022-03-25"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 16,
+  "fields": {
+    "item_name": "Ventilation Fan",
+    "issue_date": "2022-04-10"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 17,
+  "fields": {
+    "item_name": "Portable Generator",
+    "issue_date": "2022-05-14"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 18,
+  "fields": {
+    "item_name": "Traffic Cones",
+    "issue_date": "2022-06-30"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 19,
+  "fields": {
+    "item_name": "Pike Pole",
+    "issue_date": "2022-08-19"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 20,
+  "fields": {
+    "item_name": "Rescue Rope",
+    "issue_date": "2022-09-22"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 21,
+  "fields": {
+    "item_name": "Fire Hose Nozzle",
+    "issue_date": "2022-10-05"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 22,
+  "fields": {
+    "item_name": "Smoke Detector Tester",
+    "issue_date": "2023-01-12"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 23,
+  "fields": {
+    "item_name": "Fire Truck Radio",
+    "issue_date": "2023-02-15"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 24,
+  "fields": {
+    "item_name": "Emergency Lighting Kit",
+    "issue_date": "2023-04-01"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 25,
+  "fields": {
+    "item_name": "Chain Saw",
+    "issue_date": "2021-12-05"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 26,
+  "fields": {
+    "item_name": "Portable Fire Pump",
+    "issue_date": "2022-11-11"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 27,
+  "fields": {
+    "item_name": "Axe",
+    "issue_date": "2021-02-20"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 28,
+  "fields": {
+    "item_name": "Hose",
+    "issue_date": "2021-03-22"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 29,
+  "fields": {
+    "item_name": "Fire Extinguisher",
+    "issue_date": "2021-04-10"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 30,
+  "fields": {
+    "item_name": "Fire Hose Reel",
+    "issue_date": "2023-07-15"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 31,
+  "fields": {
+    "item_name": "Thermal Imaging Camera",
+    "issue_date": "2023-08-01"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 32,
+  "fields": {
+    "item_name": "Medical Oxygen Tank",
+    "issue_date": "2023-06-18"
+  }
+},
+{
+  "model": "fire_station.equipment",
+  "pk": 33,
+  "fields": {
+    "item_name": "Handheld Thermal Camera",
+    "issue_date": "2023-07-25"
+  }
+},
+{
+  "model": "fire_station.fireengine",
+  "pk": 1,
+  "fields": {
+    "engine_number": 103,
+    "model": "AAAA",
+    "license_plate": "AAA-11",
+    "station": 1,
+    "equipments": [
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "fire_station.fireengine",
+  "pk": 2,
+  "fields": {
+    "engine_number": 10,
+    "model": "OOO",
+    "license_plate": "PPP-1",
+    "station": 1,
+    "equipments": [
+      9,
+      10
+    ]
+  }
+},
+{
+  "model": "fire_station.fireengine",
+  "pk": 3,
+  "fields": {
+    "engine_number": 383,
+    "model": "PPP-w",
+    "license_plate": "UED-243",
+    "station": 2,
+    "equipments": [
+      26,
+      27
+    ]
+  }
+},
+{
+  "model": "fire_station.fireengine",
+  "pk": 4,
+  "fields": {
+    "engine_number": 294,
+    "model": "wow",
+    "license_plate": "WOW-11",
+    "station": 3,
+    "equipments": [
+      11,
+      12
+    ]
+  }
+},
+{
+  "model": "fire_station.fireengine",
+  "pk": 5,
+  "fields": {
+    "engine_number": 1494,
+    "model": "KDM-34",
+    "license_plate": "DNV-304",
+    "station": 4,
+    "equipments": [
+      31,
+      32
+    ]
+  }
+},
+{
+  "model": "fire_station.fireengine",
+  "pk": 6,
+  "fields": {
+    "engine_number": 395,
+    "model": "MMM-2",
+    "license_plate": "MDV-33",
+    "station": 5,
+    "equipments": [
+      1
+    ]
+  }
+},
+{
+  "model": "fire_station.fireengine",
+  "pk": 7,
+  "fields": {
+    "engine_number": 2432,
+    "model": "KEKM",
+    "license_plate": "KEEK-333",
+    "station": 6,
+    "equipments": [
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "fire_station.fireengine",
+  "pk": 8,
+  "fields": {
+    "engine_number": 432,
+    "model": "KVM",
+    "license_plate": "KENv-32",
+    "station": 7,
+    "equipments": [
+      5
+    ]
+  }
+},
+{
+  "model": "fire_station.fireengine",
+  "pk": 9,
+  "fields": {
+    "engine_number": 3024,
+    "model": "DKVM",
+    "license_plate": "KV-1",
+    "station": 8,
+    "equipments": [
+      8
+    ]
+  }
+},
+{
+  "model": "fire_station.fireengine",
+  "pk": 10,
+  "fields": {
+    "engine_number": 304,
+    "model": "KJV",
+    "license_plate": "KEV-2",
+    "station": 9,
+    "equipments": [
+      13
+    ]
+  }
+},
+{
+  "model": "fire_station.fireengine",
+  "pk": 11,
+  "fields": {
+    "engine_number": 204,
+    "model": "KDVM",
+    "license_plate": "KDNVJ-2",
+    "station": 10,
+    "equipments": [
+      16
+    ]
+  }
+},
+{
+  "model": "fire_station.fireengine",
+  "pk": 12,
+  "fields": {
+    "engine_number": 394,
+    "model": "KDN",
+    "license_plate": "KKE-2",
+    "station": 11,
+    "equipments": [
+      14,
+      15
+    ]
+  }
+}
+]
