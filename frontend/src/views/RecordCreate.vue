@@ -157,6 +157,13 @@ const submitDispatch = () => {
     dispatch.value.fire_engine = selectedEn
     dispatch.value.equipment_used = avaiquipment.value.filter(equip => equip.selected).map(equip => equip.id)
     console.log(dispatch.value)
+    if (
+        dispatch.value.fire_fighter.length == 0 ||
+        dispatch.value.fire_engine.length == 0 ||
+        dispatch.value.equipment_used == 0
+    ) {
+        return
+    }
     apiClient.post(`/fire-station/dispatch/`, dispatch.value)
 };
 

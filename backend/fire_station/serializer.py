@@ -36,20 +36,6 @@ class FireFighterSerializer(serializers.ModelSerializer):
         model = models.FireFighter
         fields = ('__all__')
 
-
-class DispatchSerializer(serializers.ModelSerializer):
-    """Dispatch model serializer"""
-
-    class Meta:
-        model = models.Dispatch
-        fields = ('__all__')
-
-    def to_representation(self, instance):
-        ret = super().to_representation(instance)
-        ret['incident'] = instance.incident.label
-        ret['station'] = instance.station.station_name
-        return ret
-
         
 class ShiftSerializer(serializers.ModelSerializer):
     """Fire station model serializer"""
@@ -111,3 +97,19 @@ class FireStationSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Station
         fields = ('__all__')
+        
+
+class DispatchSerializer(serializers.ModelSerializer):
+    """Dispatch model serializer"""
+
+    station_detail = FireStationSerializer(source='station', read_only=True)
+
+    class Meta:
+        model = models.Dispatch
+        fields = ('__all__')
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        ret['incident'] = instance.incident.label
+        ret['station'] = instance.station.station_name
+        return ret
