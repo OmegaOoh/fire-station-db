@@ -19,13 +19,13 @@
             </select>
             <div class="indicator">
                 <span class="indicator-item indicator-top indicator-start badge badge-neutral">From:</span>
-                <input type="date" class="input w-full max-w-xs">
+                <input type="date" class="input w-full max-w-xs" v-model="from">
             </div>
             <div class="indicator">
                 <span class="indicator-item indicator-top indicator-start badge badge-neutral">To:</span>
-                <input type="date" class="input w-full max-w-xs">
+                <input type="date" class="input w-full max-w-xs" v-model="to">
             </div>
-            <button class="btn btn-neutral " @click="filterData">Search</button>
+            <button class="btn btn-neutral " @click="filterData" >Search</button>
         </div>
 
         <div class="flex w-full flex-col my-6">
@@ -94,6 +94,8 @@ const responseData = ref({
 const selectedStation = ref('');
 const selectedMonth = ref('');
 const selectedIncidentType = ref('');
+const from = ref('');
+const to = ref('');
 
 // Example data for filtering
 const stations = ref([]);
@@ -124,6 +126,12 @@ const filterData = async() => {
     }
     if (selectedIncidentType.value) {
         filterParam += "incident=" + selectedIncidentType.value + "&"
+    }
+    if (from.value) {
+        filterParam += "start_time=" + from.value + "&"
+    }
+    if (to.value) {
+        filterParam += "end_time=" + to.value + "&"
     }
     fetchData(filterParam)
 };

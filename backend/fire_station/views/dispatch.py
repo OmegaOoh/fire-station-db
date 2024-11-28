@@ -102,13 +102,13 @@ class DispatchAggregate(
 
         # 2023-03-15T14:30 example format
         try:
-            start_time = dateparse.parse_datetime(self.request.query_params.get("start_time"))
+            start_time = dateparse.parse_date(self.request.query_params.get("start_time"))
             queryset = queryset.filter(reported_time__gte=start_time)
         except (ValueError, TypeError):
             pass
 
         try:
-            end_time = dateparse.parse_datetime(self.request.query_params.get("end_time"))
+            end_time = dateparse.parse_date(self.request.query_params.get("end_time"))
             queryset = queryset.filter(reported_time__lte=end_time)
         except (ValueError, TypeError):
             pass
