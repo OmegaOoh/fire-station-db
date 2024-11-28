@@ -69,7 +69,7 @@
                     <td>{{ formatTime(shift.shift_start) }}</td>
                     <td>{{ formatTime(shift.shift_end) }}</td>
                     <td>
-                        <button v-if="shift.removeable" @click="removeShift(shift.id)" class="btn btn-danger btn-sm">Remove</button>
+                        <button @click="removeShift(shift.id)" class="btn btn-danger btn-sm">Remove</button>
                     </td>
                 </tr>
             </tbody>

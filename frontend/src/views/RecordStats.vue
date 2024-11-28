@@ -157,6 +157,8 @@ const fetchData = async (filter="") => {
     const total = await apiClient.get(`/fire-station/dispatch-aggregate/` + "?" + filter)
     responseData.value.responded = total.data.number_of_dispatches
     responseData.value.avg_time_resolved = total.data.average_time_resolved / 60
+    responseData.value.stations_num = total.data.station_count
+    responseData.value.active_duty = total.data.fire_fighter_count
 }
 
 const getMonthData = (month_id) => {
