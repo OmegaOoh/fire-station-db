@@ -53,7 +53,7 @@
             <div class="font-semibold mb-1">Equipments</div>
             <select v-model="selectedEquipments" multiple class="select select-bordered w-full mb-2">
                 <option v-for="equipment in equipments" :key="equipment.id" :value="equipment.id">
-                    {{ equipment.item_name }} ({{ formatDate(equipment.date) }})
+                    {{ equipment.item_name }} ({{ formatDate(equipment.issue_date) }})
                 </option>
             </select>
             <button @click="addFireEngine" class="btn btn-primary">Add Fire Engine</button>

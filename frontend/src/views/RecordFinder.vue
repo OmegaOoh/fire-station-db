@@ -32,7 +32,7 @@
                     <td>{{ dispatch.incident }}</td>
                     <td>{{ dispatch.address }}</td>
                     <td>{{ dispatch.station }}</td>
-                    <td>{{ formatDate(dispatch.date) }}</td>
+                    <td>{{ formatDate(dispatch.reported_time) }}</td>
                     <td>
                         <router-link :to="`/${dispatch.id}/edit`" class="btn btn-secondary btn-sm">Edit</router-link>
                     </td>
@@ -49,12 +49,7 @@ import { RouterLink } from 'vue-router';
 
 //const router = useRouter();
 
-const dispatches = ref([
-    { id: 1, incident: 'Structure Fire', address: '123 Main St', station: 'Main Fire Station', date: '2023-10-01' },
-    { id: 2, incident: 'Vehicle Fire', address: '456 Elm St', station: 'Downtown Fire Station', date: '2023-10-02' },
-    { id: 3, incident: 'Medical Emergency', address: '789 Oak St', station: 'Northside Fire Station', date: '2023-10-03' },
-    // Add more dispatches as needed
-]);
+const dispatches = ref([]);
 
 const search = ref('');
 
