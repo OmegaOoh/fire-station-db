@@ -17,8 +17,17 @@
                 <option value="">All Incident Types</option>
                 <option v-for="type in incidentTypes" :key="type" :value="type">{{ type }}</option>
             </select>
+            <div class="indicator">
+                <span class="indicator-item indicator-top indicator-start badge badge-neutral">From:</span>
+                <input type="date" class="input w-full max-w-xs">
+            </div>
+            <div class="indicator">
+                <span class="indicator-item indicator-top indicator-start badge badge-neutral">To:</span>
+                <input type="date" class="input w-full max-w-xs">
+            </div>
             <button class="btn btn-neutral " @click="filterData">Search</button>
         </div>
+
         <div class="flex w-full flex-col my-6">
             <div class="stats bg-base-200 shadow w-full mb-4">
                 <div class="stat place-items-center">
