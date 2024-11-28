@@ -73,8 +73,8 @@ const responseData = ref({
     responded: 200,
     most_type: "Structure Fire",
     most_percentage: 70,
-    stations_num: 1,
-    active_duty: 8,
+    stations_num: "-",
+    active_duty: "-",
     avg_time_resolved: 25,
     by_station: [],
     by_month: [],
@@ -130,6 +130,8 @@ const fetchChoices = async () => {
     const choice_res = await apiClient.get(`/fire-station/choice/`)
     months.value = choice_res.data.month
     incidentTypes.value = choice_res.data.incident_type
+    console.log("This from choice")
+    console.log(incidentTypes.value)
 }
 
 const fetchData = async (filter="") => {
@@ -140,6 +142,10 @@ const fetchData = async (filter="") => {
     responseData.value.by_month = by_month_res.data 
 
     const by_in_res = await apiClient.get(`/fire-station/dispatch-aggregate/?group_by=incident` + "&" + filter)
+
+    console.log("This from data")
+    console.log(incidentTypes.value)
+
     if (by_in_res.data.length > 0){
         responseData.value.most_type = getIncidentName(by_in_res.data[0].incident)
         responseData.value.most_percentage = by_in_res.data[0].dispatch_percentage
@@ -163,11 +169,11 @@ const getIncidentName = (in_id) => {
     if (data.length != 0) { return data[0].label } else {return ""}
 }
 
-
+const fetchAll = async () => {
+    await fetchChoices();
+    await fetchData();
+}
 onMounted(
-    () => {
-        fetchData()
-        fetchChoices()
-    }
+    () => { fetchAll() }
 )
 </script>

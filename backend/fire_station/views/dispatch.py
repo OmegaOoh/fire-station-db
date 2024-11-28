@@ -130,12 +130,12 @@ class DispatchAggregate(
 
         # Dispatch assignments group by "group_by" query param
         if group_by:
-            total_dispatch = len(queryset)
+            total_dispatch = queryset.count()
             aggregate_data = queryset.values(group_by).annotate(
                 average_time_resolved=Avg(F('resolved_time') - F('reported_time')),
                 number_of_dispatches=Count('id'), 
                 dispatch_percentage=Count('id') / float(total_dispatch) * 100
-            ).order_by('number_of_dispatches')
+            ).order_by('-number_of_dispatches')
 
         # All dispatch assignments
         else:
