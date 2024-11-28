@@ -6,18 +6,18 @@
             <p class="col-span-2"><strong>Address:</strong> {{ station.address }}</p>
             <p><strong>Staff Capacity:</strong> {{ station.staff_capacity }}</p>
             <p><strong>Fire Engine Capacity:</strong> {{ station.fire_engine_capacity }}</p>
-            <p class="font-bold text-2xl">Staff on each Rank</p>
+            <p class="font-bold text-2xl">Firefighter on each Role</p>
             <div class="stats bg-base-200 shadow w-full">
-                <div class="stat place-items-center" v-for="(data, index) in responseData.roles" :key="index">
-                    <div class="stat-title">{{ data.role }}</div>
-                    <div class="stat-value" :class="colorByIndex(index)">{{ data.amount }} <span class="stat-desc text-lg">Role</span></div>
+                <div class="stat place-items-center" v-for="(data, index) in rollCount" :key="index">
+                    <div class="stat-title">{{ data.firefighter__role }}</div>
+                    <div class="stat-value" :class="colorByIndex(index)">{{ data.amount }}</div>
                 </div>
             </div>
             <p class="font-bold text-2xl">Firefighter on each Rank</p>
             <div class="stats bg-base-200 shadow w-full">
-                <div class="stat place-items-center" v-for="(data, index) in responseData.ranks" :key="index">
-                    <div class="stat-title">{{ data.rank }}</div>
-                    <div class="stat-value" :class="colorByIndex(index)">{{ data.amount }} <span class="stat-desc text-lg">Role</span></div>
+                <div class="stat place-items-center" v-for="(data, index) in rankCount" :key="firefighter__rank">
+                    <div class="stat-title">{{ getRankName(data.firefighter__rank) }}</div>
+                    <div class="stat-value" :class="colorByIndex(index)">{{ data.amount }}</div>
                 </div>
             </div>
         </div>
@@ -98,6 +98,9 @@ const route = useRoute();
 const station = ref({});
 const staff = ref([]);
 const fireEngines = ref([]);
+const rollCount = ref([]);
+const rankCount = ref([]);
+const rankList = ref([]);
 
 const fetchStationDetails = async () => {
     const stationId = route.params.id;
@@ -106,10 +109,25 @@ const fetchStationDetails = async () => {
         station.value = response.data;
         fireEngines.value = response.data.fire_engine
         staff.value = response.data.staff;
+        rollCount.value = response.data.role_count	
+        rankCount.value = response.data.rank_count
+        console.log(rollCount.value)
     } catch (error) {
         console.error('Error fetching station details:', error);
     }
+    const choice_res = await apiClient.get(`/fire-station/choice/`)
+    rankList.value = choice_res.data.fire_fighter_rank
+    console.log(rankList.value)
 };
+
+const getRankName = (rankId) => {
+    const filtered = rankList.value.filter(rank => rank.value == rankId)
+    if (filtered.length > 0) {
+        return filtered[0].label
+    } else {
+        return "-"
+    }
+}
 
 onMounted(() => {
     fetchStationDetails()
