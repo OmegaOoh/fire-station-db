@@ -15,7 +15,7 @@
             </div>
             <p class="font-bold text-2xl">Firefighter on each Rank</p>
             <div class="stats bg-base-200 shadow w-full">
-                <div class="stat place-items-center" v-for="(data, index) in rankCount" :key="firefighter__rank">
+                <div class="stat place-items-center" v-for="(data, index) in rankCount" :key="data.firefighter__rank">
                     <div class="stat-title">{{ getRankName(data.firefighter__rank) }}</div>
                     <div class="stat-value" :class="colorByIndex(index)">{{ data.amount }}</div>
                 </div>

@@ -19,3 +19,17 @@ class StaffList(
     @csrf_exempt
     def post(self, request: request.HttpRequest, *args: Any, **kwargs: Any) -> response.HttpResponse:
         return self.create(request, *args, **kwargs)
+
+class StaffDetail(
+    generics.GenericAPIView,
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin
+):
+    queryset = models.Staff.objects.all()
+    serializer_class = serializer.StaffSerializer
+    
+    def get(self, request: request.HttpRequest, *args: Any, **kwargs: Any) -> response.HttpResponse:
+        return self.retrieve(request, *args, **kwargs)
+    
+    def put(self, request: request.HttpRequest, *args: Any, **kwargs: Any) -> response.HttpResponse:
+        return self.update(request, partial=True ,*args, **kwargs)

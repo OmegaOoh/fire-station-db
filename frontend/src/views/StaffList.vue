@@ -45,7 +45,7 @@
                     </ul>
                     <div></div>
                     <div class="flex justify-end w-full">
-                        <router-link class="btn btn-accent w-fit" :to="`/staff/${staff.id}/edit/`">Edit</router-link>
+                        <router-link class="btn btn-accent w-fit" :to="`/staff/${staffData.id}/edit/`">Edit</router-link>
                     </div>
                     
                 </div>
