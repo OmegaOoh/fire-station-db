@@ -1,3 +1,10 @@
+# Contributor
+
+1. Teerapat Trepopsakulsin    6610545324
+2. Pasu Sangiemsin            6610545405
+3. Picha Wiwattanawongsa      6610545430
+4. Sirapob Phasut             6610545537
+
 # How to run
 
 - Install backend dependencies and run backend
