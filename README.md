@@ -18,6 +18,9 @@
     python manage.py migrate
     ```
     ```bash
+    python manage.py loaddata data/data.json
+    ```
+    ```bash
     python manage.py runserver
     ```
 
