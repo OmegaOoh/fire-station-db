@@ -13,52 +13,54 @@ class EquipmentsView(
     generics.GenericAPIView
 ):
     """Return list of the equipments when GET request and create new equipments when POST request."""
-    pass
-    # serializer_class = serializer.EquipmentSerializer
 
-    # def get_queryset(self) -> QuerySet:
-    #     """Equipments view return list of usable equipment (Not on board yet)."""
-    #     return models.Equipment.objects.filter(fireengine__isnull=True)
+    serializer_class = serializer.EquipmentSerializer
 
-    # def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
-    #     """Handle get request by return with list of equipments.
+    def get_queryset(self) -> QuerySet:
+        """Equipments view return list of usable equipment (Not on board yet)."""
+        return models.Equipment.objects.filter(fireengine__isnull=True)
 
-    #     :param request: Http request object
-    #     :return: Http response object
-    #     """
-    #     return self.list(request, *args, **kwargs)
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
+        """Handle get request by return with list of equipments.
 
-    # def post(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
-    #     """Handle post request by creating equipments and return list of equipments.
+        :param request: Http request object
+        :return: Http response object
+        """
+        return self.list(request, *args, **kwargs)
 
-    #     :param request: Http request object
-    #     :return: Http response object
-    #     """
-    #     self.create(request, *args, **kwargs)
+    def post(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
+        """Handle post request by creating equipments and return list of equipments.
 
-    #     serializer = self.get_serializer(self.get_queryset(), many=True)
+        :param request: Http request object
+        :return: Http response object
+        """
+        self.create(request, *args, **kwargs)
 
-    #     return response.Response(serializer.data, status=status.HTTP_201_CREATED)
+        serializer = self.get_serializer(self.get_queryset(), many=True)
 
-    # def delete(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
-    #     """Handle delete request by deleting equipments and return list of equipments.
+        return response.Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    #     :param request: Http request object
-    #     :return: Http response object
-    #     """
-    #     return self.destroy(request, *args, **kwargs)
+    def delete(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
+        """Handle delete request by deleting equipments and return list of equipments.
 
-    # def destroy(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
-    #     """Get equipments instance and destroy it.
+        :param request: Http request object
+        :return: Http response object
+        """
+        return self.destroy(request, *args, **kwargs)
 
-    #     :param request: Http request object
-    #     :return: Http response object
-    #     """
-    #     queryset = self.get_queryset()
-    #     equipments_id = self.request.GET.get("equipments_to_remove", [])
-    #     equipments_to_remove = queryset.filter(id__in=equipments_id)
-    #     self.perform_destroy(equipments_to_remove)
+    def destroy(self, request: HttpRequest, *args: Any, **kwargs: Any) -> response.Response:
+        """Get equipments instance and destroy it.
 
-    #     serializer = self.get_serializer(self.get_queryset(), many=True)
+        :param request: Http request object
+        :return: Http response object
+        """
+        queryset = self.get_queryset()
+        equipments_ids = self.request.query_params.get("equipments_to_remove", None)
+        parse_id = equipments_ids.split(",")
+        if parse_id:
+            equipments_to_remove = queryset.filter(id__in=parse_id)
+            self.perform_destroy(equipments_to_remove)
 
-    #     return response.Response(serializer.data, status=status.HTTP_200_OK)
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+
+        return response.Response(serializer.data, status=status.HTTP_200_OK)

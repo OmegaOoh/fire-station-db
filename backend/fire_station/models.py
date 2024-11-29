@@ -11,6 +11,9 @@ class Station(models.Model):
     staff_capacity = models.IntegerField()
     fire_engine_capacity = models.IntegerField()
 
+    def __str__(self) -> str:
+        return self.station_name
+
 
 class Shift(models.Model):
     """Working Shift indicates, Start time, End time and day of weeks."""
@@ -29,15 +32,21 @@ class Staff(models.Model):
     gender = EnumField(Gender)
     position = models.CharField(max_length=100)
     station = models.ForeignKey(Station, on_delete=models.CASCADE)
-    shift = models.ManyToManyField(Shift)
+    # Make shift optional until shift serializer done
+    shift = models.ManyToManyField(Shift, blank=True)
 
     def __str__(self):
         return f"{self.full_name}"
 
+    @property
+    def is_fire_fighter(self):
+        """Tell whether staff are fire fighter or not"""
+        return hasattr(self, 'firefighter')
+
 
 class FireFighter(models.Model):
     """Firefighter is also Staff"""
-    staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    staff = models.OneToOneField(Staff, on_delete=models.CASCADE)
     rank = EnumField(FireFighterRank)
     role = EnumField(FireFighterRole)
 
@@ -59,7 +68,8 @@ class FireEngine(models.Model):
     engine_number = models.IntegerField()
     model = models.CharField(max_length=100)
     license_plate = models.CharField(max_length=10)
-    equipments = models.ManyToManyField(Equipment)
+    station = models.ForeignKey(Station, on_delete=models.CASCADE)
+    equipments = models.ManyToManyField(Equipment, blank=True)
 
     def __str__(self):
         return f"{self.model} license plate: {self.license_plate}"

@@ -19,7 +19,7 @@ const routes = [
         component: RecordStats,
     },
     {
-        path: '/create',
+        path: '/dispatch/create',
         name: "recordCreate",
         component: RecordCreate,
     },
