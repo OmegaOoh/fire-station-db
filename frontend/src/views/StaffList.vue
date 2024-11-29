@@ -53,7 +53,7 @@
         </template>
     </div>
 
-    <RouterLink class="btn btn-primary text-4xl pb-2 btn-square absolute z-10 bottom-4 right-4 btn-lg" to="/staff/add">
+    <RouterLink class="btn btn-primary text-4xl pb-2 btn-square fixed z-10 bottom-4 right-4 btn-lg" to="/staff/add">
         +
     </RouterLink>
 </template>

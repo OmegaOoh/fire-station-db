@@ -39,16 +39,16 @@
                 <div class="stat place-items-center">
                     <div class="stat-title">Most Incident Type</div>
                     <div class="stat-value">{{ responseData.most_type }}</div>
-                    <div class="stat-desc text-secondary font-semibold text-lg">{{ responseData.most_percentage }} % of Dispatch</div>
+                    <div class="stat-desc text-secondary font-semibold text-lg">{{ responseData.most_percentage.toFixed(2) }} % of Dispatch</div>
                 </div>
 
                 <div class="stat place-items-center">
                     <div class="stat-title">Average Time Resolved</div>
-                    <div class="stat-value">{{ responseData.avg_time_resolved }} mins</div>
+                    <div class="stat-value">{{ responseData.avg_time_resolved.toFixed(2) }} mins</div>
                 </div>
 
                 <div class="stat place-items-center">
-                    <div class="stat-title">Fire Fighter on Duty</div>
+                    <div class="stat-title">Fire Fighter</div>
                     <div class="stat-value">{{ responseData.active_duty }}</div>
                     <div class="stat-desc text-secondary font-semibold text-lg">across {{ responseData.stations_num }} stations</div>
                 </div>
